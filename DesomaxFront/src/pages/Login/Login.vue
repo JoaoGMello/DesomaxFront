@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-const name = 'App'
+const name = 'Login'
 
 export default defineComponent({
   name,
 
   components: { }, 
 
-  props: { },
+//props: { },
 
   mounted () { },
 
@@ -25,21 +25,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="size-full">
-    <div class="text-[blue]">aaaaa</div>
-    <router-view></router-view>
-  </div>
+  <div></div>
 </template>
 
 
-<style>
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+<style scoped>
 
-html, body, #app {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
 </style>

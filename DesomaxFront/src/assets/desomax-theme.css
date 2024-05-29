@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black                 : #434343;
+  --hover-primary-color   : #0662a3;
+  --invalid-color         : #f44336;
+  --primary-color         : #006CB7;
+  --secundary-color       : #9ACA3C;
+  --hover-secundary-color : #c9f179;
+  --tertiary-color        : #808080;
+  --transparent           : transparent;
+  --white                 : #fff;
+  --light-gray            : #bebebe;
+  --light-blue-color      : #ECF3F9;
+}
+
+
+@font-face {
+  font-family: 'Poppins Light';
+  src: url('/font/poppins_light.ttf');
+}
+.poppins-light {
+  font-family: 'Poppins Light';
+}
+
+@font-face {
+  font-family: 'Poppins Regular';
+  src: url('/font/poppins_regular.ttf');
+}
+.poppins-regular {
+  font-family: 'Poppins Regular';
+}
+
+@font-face {
+  font-family: 'Poppins Medium';
+  src: url('/font/poppins_medium.ttf');
+}
+.poppins-medium {
+  font-family: 'Poppins Medium';
+}
+
+@font-face {
+  font-family: 'Poppins Semibold';
+  src: url('/font/poppins_semibold.ttf');
+}
+.poppins-semibold {
+  font-family: 'Poppins Semibold';
+}
+
+@font-face {
+  font-family: 'Proxima Nova Regular';
+  src: url('/font/proximanova_reg.otf');
+}
+.proximanova-regular {
+  font-family: 'Proxima Nova Regular';
+}
+
+@font-face {
+  font-family: 'Proxima Nova Semibold';
+  src: url('/font/proximanova_semibold.otf');
+}
+.proximanova-semibold {
+  font-family: 'Proxima Nova Semibold';
+}
+
+@font-face {
+  font-family: 'Proxima Nova Light';
+  src: url('/font/proximanova_light.otf');
+}
+.proximanova-light {
+  font-family: 'Proxima Nova Light';
+}
+
+.sga-label-link {
+  font-family: 'Poppins Regular';
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.separator {
+  height: 1px;
+  width: 100%;
+  background-color: #F0F0F0;
+  box-shadow: 0px 0px 5px 0px #F0F0F0;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.two-fields {
+  grid-column: span 2;
+}
+
+.three-fields {
+  grid-column: span 3;
+}
+
+.four-fields {
+  grid-column: span 4;
+}
+
+.five-fields {
+  grid-column: span 5;
+}
+
+.size-full {
+  height: 100%;
+  width: 100%;
+}
+
+.screen-full {
+  height: 100vh;
+  width: 100vw;
+}
+
+.tomato {
+  background: tomato;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-content {
+  animation: showContent .4s forwards ease-in-out;
+}
+
+@keyframes showContent {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    --scrollbar-cor: #d1d1d1;
+    --scrollbar-background: transparent;
+    --scrollbar-tamanho: 0.4rem;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-cor) var(--scrollbar-background);
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: var(--scrollbar-tamanho);
+    height: var(--scrollbar-tamanho);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-background);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-cor);
+    border-radius: 7px;
+    transition: 0.5s;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #c2c2c2;
+  }
+
+
+  @media (min-width:1024px) {
+    .spacing {
+      padding: 1rem 1.25rem 1rem !important;
+    }
+  }
+
+  @media (min-width:1240px) {
+    .spacing {
+      padding: 1rem 1.75rem 1.5rem !important;
+    }
+  }
+
+  @media (min-width:1500px) {
+    .spacing {
+      padding: 1rem 1.75rem 1.5rem !important;
+    }
+  }
+
+  @media (min-width:1600px) {
+
+  }
+
+  @media (min-width:1920px) {
+
+  }
+
+
+  .p-toast .p-toast-message .p-toast-message-content{
+    border-width: 0 !important;
+  }
+
+  .custom-tooltip {
+    position: absolute;
+    width: fit-content;
+    max-width: 500px;
+    padding: 8px;
+    border-radius: 6px;
+    margin: 20px 0 0 -50px;
+    background-color: #495057;
+    color: white;
+    backface-visibility: hidden;
+    z-index: 99999999999999;
+  }
