@@ -26,7 +26,6 @@ export default defineComponent({
 
 <template>
   <div class="size-full">
-    <div class="text-[blue]">aaaaa</div>
     <router-view></router-view>
   </div>
 </template>
