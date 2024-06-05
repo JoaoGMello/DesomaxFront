@@ -4,13 +4,15 @@ import Loading from "@/components/atoms/Loading/Loading.vue";
 import PrimaryButton from "@/components/atoms/PrimaryButton/PrimaryButton.vue";
 import InputTextLogin from "./components/InputTextLogin.vue";
 import InputPasswordLogin from "./components/InputPasswordLogin.vue";
+import Image from "@/components/atoms/Image/Image.vue";
 
 const name = 'Login'
 
 export default defineComponent({
   name,
 
-  components: { PrimaryButton, Loading, InputTextLogin, InputPasswordLogin }, 
+  // eslint-disable-next-line vue/no-reserved-component-names
+  components: { PrimaryButton, Loading, InputTextLogin, InputPasswordLogin, Image }, 
 
 //props: { },
 
@@ -35,8 +37,13 @@ export default defineComponent({
 
 <template>
   <div class="login-container flex h-full">
-    <div class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center bg-blue-300">
-
+    <div class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-blue-200">
+      <Image
+        imgWidth="80%"
+        imgHeight="80%"
+        imgHeightResp="80%"
+        imageName="cleaning-service-img.svg"
+      />
     </div>
 
     <div class="h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center">
