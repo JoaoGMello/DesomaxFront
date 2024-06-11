@@ -108,11 +108,11 @@ export default defineComponent({
         :class="{'invalid': errorMessage === '' ? false : true}"
       >
         <Icon
-          class="px-3"
-          :its-svg-icon="false"
+          class="px-2 pt-0.5"
+          :its-url="false"
           iconHeight="1.4rem"
           iconHeightResp="1.2rem"
-          :iconName="iconName"
+          iconName="pi pi-user"
         />
 
         <InputText

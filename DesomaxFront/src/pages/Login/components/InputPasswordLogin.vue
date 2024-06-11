@@ -104,10 +104,11 @@ export default defineComponent({
         :class="{'invalid': errorMessage === '' ? false : true}"
       >
         <Icon
-          class="px-3"
+          class="px-2 pt-0.5"
+          :its-url="false"
           iconHeightResp="1.2rem"
           iconHeight="1.4rem"
-          iconName="password_icon.svg" 
+          iconName="pi pi-lock" 
         />
   
         <InputText 
@@ -124,9 +125,10 @@ export default defineComponent({
   
         <Icon
           class="cursor-pointer px-3"
+          :its-url="false"
           iconHeightResp="0.8rem"
           iconHeight="1rem"
-          :iconName="showPassword ? 'view_icon.svg' : 'view_icon.svg'" 
+          :iconName="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'" 
           @click="showPassword = !showPassword"
         />
       </div>

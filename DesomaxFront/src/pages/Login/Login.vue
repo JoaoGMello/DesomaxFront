@@ -51,7 +51,7 @@ export default defineComponent({
         <div class="note1:text-[1.5rem] monitor1:text-[2.1rem] text-[var(--primary-color)] poppins-medium login-title"> Bem-Vindo(a) ao Desomax </div>
         <div class="note1:text-[0.95rem] monitor1:text-[1.1rem] text-[var(--tertiary-color)] poppins-regular label-login"> Produtos de limpeza de alta qualidade </div>
         
-        <div class="note1:w-[90%] note2:w-[28rem] monitor1:w-[30rem] inputs-content">
+        <div class="note1:w-[90%] note2:w-[28rem] monitor1:w-[30rem] inputs-content pt-4">
           
           <div class="flex flex-col note1:gap-y-2 monitor1:gap-y-4">
             <InputTextLogin
@@ -74,6 +74,7 @@ export default defineComponent({
             hover-color="var(--hover-primary-color)"
             rounding="10px"
             uppercase
+            @click="$router.push('/home');"
           >
             <Loading/>
           </PrimaryButton>
