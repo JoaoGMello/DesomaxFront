@@ -1,4 +1,5 @@
 import './assets/desomax-theme.css'
+import './assets/desomax-inputs-theme.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
