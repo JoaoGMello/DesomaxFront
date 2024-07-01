@@ -3,19 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --black                 : #434343;
-  --hover-primary-color   : #0662a3;
-  --invalid-color         : #f44336;
-  --primary-color         : #006CB7;
-  --secundary-color       : #9ACA3C;
-  --hover-secundary-color : #c9f179;
-  --tertiary-color        : #808080;
-  --transparent           : transparent;
-  --white                 : #fff;
-  --light-gray            : #bebebe;
-  --light-blue-color      : #ECF3F9;
+  --black: #434343;
+  --hover-primary-color: #ff8819;
+  --invalid-color: #f44336;
+  --primary-color: #ff7b00;
+  --secundary-color: #9aca3c;
+  --hover-secundary-color: #c9f179;
+  --tertiary-color: #808080;
+  --transparent: transparent;
+  --white: #fff;
+  --light-gray: #bebebe;
+  --light-blue-color: #ecf3f9;
 }
-
 
 @font-face {
   font-family: 'Poppins Light';
@@ -82,8 +81,8 @@
 .separator {
   height: 1px;
   width: 100%;
-  background-color: #F0F0F0;
-  box-shadow: 0px 0px 5px 0px #F0F0F0;
+  background-color: #f0f0f0;
+  box-shadow: 0px 0px 5px 0px #f0f0f0;
 }
 
 .ellipsis {
@@ -129,7 +128,7 @@
 }
 
 .tab-content {
-  animation: showContent .4s forwards ease-in-out;
+  animation: showContent 0.4s forwards ease-in-out;
 }
 
 @keyframes showContent {
@@ -142,79 +141,75 @@
 }
 
 /* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  * {
-    --scrollbar-cor: #d1d1d1;
-    --scrollbar-background: transparent;
-    --scrollbar-tamanho: 0.4rem;
+/* Firefox */
+* {
+  --scrollbar-cor: #d1d1d1;
+  --scrollbar-background: transparent;
+  --scrollbar-tamanho: 0.4rem;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-cor) var(--scrollbar-background);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: var(--scrollbar-tamanho);
+  height: var(--scrollbar-tamanho);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-background);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-cor);
+  border-radius: 7px;
+  transition: 0.5s;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #c2c2c2;
+}
+
+@media (min-width: 1024px) {
+  .spacing {
+    padding: 1rem 1.25rem 1rem !important;
   }
+}
 
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-cor) var(--scrollbar-background);
+@media (min-width: 1240px) {
+  .spacing {
+    padding: 1rem 1.75rem 1.5rem !important;
   }
+}
 
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: var(--scrollbar-tamanho);
-    height: var(--scrollbar-tamanho);
+@media (min-width: 1500px) {
+  .spacing {
+    padding: 1rem 1.75rem 1.5rem !important;
   }
+}
 
-  *::-webkit-scrollbar-track {
-    background: var(--scrollbar-background);
-  }
+@media (min-width: 1600px) {
+}
 
-  *::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-cor);
-    border-radius: 7px;
-    transition: 0.5s;
-  }
+@media (min-width: 1920px) {
+}
 
-  *::-webkit-scrollbar-thumb:hover {
-    background-color: #c2c2c2;
-  }
+.p-toast .p-toast-message .p-toast-message-content {
+  border-width: 0 !important;
+}
 
-
-  @media (min-width:1024px) {
-    .spacing {
-      padding: 1rem 1.25rem 1rem !important;
-    }
-  }
-
-  @media (min-width:1240px) {
-    .spacing {
-      padding: 1rem 1.75rem 1.5rem !important;
-    }
-  }
-
-  @media (min-width:1500px) {
-    .spacing {
-      padding: 1rem 1.75rem 1.5rem !important;
-    }
-  }
-
-  @media (min-width:1600px) {
-
-  }
-
-  @media (min-width:1920px) {
-
-  }
-
-
-  .p-toast .p-toast-message .p-toast-message-content{
-    border-width: 0 !important;
-  }
-
-  .custom-tooltip {
-    position: absolute;
-    width: fit-content;
-    max-width: 500px;
-    padding: 8px;
-    border-radius: 6px;
-    margin: 20px 0 0 -50px;
-    background-color: #495057;
-    color: white;
-    backface-visibility: hidden;
-    z-index: 99999999999999;
-  }
+.custom-tooltip {
+  position: absolute;
+  width: fit-content;
+  max-width: 500px;
+  padding: 8px;
+  border-radius: 6px;
+  margin: 20px 0 0 -50px;
+  background-color: #495057;
+  color: white;
+  backface-visibility: hidden;
+  z-index: 99999999999999;
+}

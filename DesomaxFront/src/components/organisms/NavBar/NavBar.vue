@@ -1,45 +1,43 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 const name = 'NavBar'
 
 export default defineComponent({
   name,
 
-  components: { }, 
+  components: {},
 
   // props: { },
 
-  mounted () { },
+  mounted() {},
 
-  updated () { },
+  updated() {},
 
-  data () {
-    return { 
-      active: false,
+  data() {
+    return {
+      active: false
     }
   },
 
-  methods: { },
+  methods: {},
 
-  computed: { }, 
-
-});
+  computed: {}
+})
 </script>
 
 <template>
   <div class="header">
-    <nav class="nav" :class="{'active': active}">
-        <a href="/" class="logo">Desomax</a>
-        <button class="hamburger" @click="active = !active"></button>
-        <ul class="nav-list">
-          <li><a href="#">Sobre</a></li>
-          <li><a href="#">Projetos</a></li>
-          <li><a href="#">Contato</a></li>
-        </ul>
-      </nav>
+    <nav class="nav" :class="{ active: active }">
+      <a href="/" class="logo">Desomax</a>
+      <button class="hamburger" @click="active = !active"></button>
+      <ul class="nav-list">
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Projetos</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </nav>
   </div>
 </template>
-
 
 <style scoped>
 a {
@@ -48,7 +46,7 @@ a {
 }
 
 .header {
-  background: #006CB7;
+  background: #ff7b00;
   padding-inline: 16px;
 }
 
@@ -64,7 +62,7 @@ a {
 
 .logo {
   font-size: 30px;
-  color: #fff
+  color: #fff;
 }
 
 .nav-list {
@@ -89,7 +87,7 @@ a {
 
 .hamburger::after,
 .hamburger::before {
-  content: " ";
+  content: ' ';
   display: block;
   width: 30px;
   height: 3px;
@@ -111,7 +109,7 @@ a {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #006CB7;
+    background: #ff7b00;
     clip-path: circle(100px at 90% -15%);
     transition: 1s ease-out;
 
