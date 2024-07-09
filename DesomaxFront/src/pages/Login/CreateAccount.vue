@@ -63,7 +63,7 @@ export default defineComponent({
       />
     </div>
 
-    <div class="h-full w-[50%] pt-8 px-8 flex flex-col items-center">
+    <div class="h-full w-[50%] pt-8 px-8 flex flex-col items-center justify-between">
       <div
         class="note1:text-[2.5rem] monitor1:text-[3.1rem] text-[var(--primary-color)] poppins-medium login-title"
       >
@@ -133,7 +133,16 @@ export default defineComponent({
         />
       </div>
 
-      <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-6 monitor1:mt-80">
+      <div
+        class="note1:text-[0.95rem] monitor1:text-[1.1rem] text-[var(--tertiary-color)] poppins-regular"
+      >
+        Ao criar um perfil na Desomax, solicitamos suas informações básicas de contato e detalhes
+        sobre suas preferências de compra. Garantimos a privacidade dos seus dados, utilizados
+        apenas para proporcionar uma experiência personalizada. Seu cadastro permite acesso a
+        ofertas exclusivas e serviços personalizados.
+      </div>
+
+      <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-6">
         <PrimaryButton
           :just-slot="loading"
           text="Salvar"
