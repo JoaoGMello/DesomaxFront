@@ -28,12 +28,13 @@ export default defineComponent({
 <template>
   <div class="header">
     <nav class="nav" :class="{ active: active }">
-      <a href="/" class="logo">Desomax</a>
+      <a href="/home" class="logo">Desomax</a>
       <button class="hamburger" @click="active = !active"></button>
       <ul class="nav-list">
         <li><a href="#">Sobre</a></li>
         <li><a href="#">Projetos</a></li>
         <li><a href="#">Contato</a></li>
+        <li><a href="/my-profile">Perfil</a></li>
       </ul>
     </nav>
   </div>
