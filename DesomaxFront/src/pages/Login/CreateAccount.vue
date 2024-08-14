@@ -5,7 +5,6 @@ import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInputMask.vue'
 import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
 import FormRadioButton from '@/components/molecules/Inputs/FormRadioButton/FormRadioButton.vue'
-import LabelValue from '@/shared/LabelValue'
 import { defineComponent } from 'vue'
 const name = 'CreateAccount'
 
@@ -32,7 +31,6 @@ export default defineComponent({
     return {
       mask: '99999999999',
       regex: /[^0-9]+/g,
-      optionsStatus: [new LabelValue('Masculino', 0), new LabelValue('Feminino', 1)],
       loading: false
     }
   },
@@ -70,7 +68,7 @@ export default defineComponent({
         Cadastre-se
       </div>
 
-      <div class="grid items-start gap-x-8 gap-y-10 py-6 w-[100%] form">
+      <div class="grid items-start gap-x-8 note1:gap-y-5 monitor1:gap-y-10 py-6 w-[100%] form">
         <FormInputText
           class="one-field"
           input-label="Nome"
@@ -101,14 +99,11 @@ export default defineComponent({
           placeholder="Digite um celular"
         />
 
-        <FormRadioButton
+        <FormInputText
           class="one-field"
-          input-label="Gênero"
-          fontLabel="Poppins Medium"
-          fontLabelRadio="Poppins Regular"
-          :options="optionsStatus"
-          option-label="label"
-          option-value="value"
+          input-label="Nome de Usuário"
+          placeholder="Digite um nome de usuário"
+          font-label="Poppins Medium"
         />
 
         <FormInputMask
@@ -142,7 +137,7 @@ export default defineComponent({
         ofertas exclusivas e serviços personalizados.
       </div>
 
-      <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-6">
+      <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-2">
         <PrimaryButton
           :just-slot="loading"
           text="Salvar"

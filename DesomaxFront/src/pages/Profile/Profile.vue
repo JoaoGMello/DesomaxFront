@@ -1,13 +1,17 @@
 <script lang="ts">
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import CardTitle from '@/components/molecules/CardTitle/CardTitle.vue'
+import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInputMask.vue';
+import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue';
+import FormRadioButton from '@/components/molecules/Inputs/FormRadioButton/FormRadioButton.vue';
+import LabelValue from '@/shared/LabelValue';
 import { defineComponent } from 'vue'
 const name = 'Profile'
 
 export default defineComponent({
   name,
 
-  components: { CardTitle, PrimaryButton },
+  components: { CardTitle, PrimaryButton, FormInputText, FormInputMask, FormRadioButton },
 
   props: {},
 
@@ -16,10 +20,21 @@ export default defineComponent({
   updated() {},
 
   data() {
-    return {}
+    return {
+      mask: '99999999999',
+      regex: /[^0-9]+/g,
+      optionsStatus: [new LabelValue('Masculino', 0), new LabelValue('Feminino', 1)],
+    }
   },
 
-  methods: {},
+  methods: {
+    changeMask(phone: string) {
+      const phoneSize = phone.replace(this.regex, '').length
+
+      if (phoneSize === 11) this.mask = '(99) 99999-9999'
+      if (phoneSize === 10) this.mask = '(99) 9999-9999'
+    }
+  },
 
   computed: {}
 })
@@ -45,7 +60,96 @@ export default defineComponent({
 
       <div class="relative size-full">
         <div class="size-full flex flex-col gap-y-8 overflow-x-hidden overflow-y-auto">
-          <div class="grid items-baseline gap-x-8 gap-y-4 py-6 form-profile"></div>
+          <div class="grid items-baseline gap-x-8 gap-y-4 py-6 form-profile">
+            <FormInputText
+              class="one-field"
+              input-label="Nome"
+              placeholder="Digite seu nome"
+              font-label="Poppins Medium"
+            />
+
+            <FormInputText
+              class="one-field"
+              input-label="Sobrenome"
+              placeholder="Digite seu sobrenome"
+              font-label="Poppins Medium"
+            />
+
+            <FormInputText
+              class="one-field"
+              input-label="E-mail"
+              placeholder="Digite seu e-mail"
+              font-label="Poppins Medium"
+            />
+
+            <FormInputMask
+              class="one-fields"
+              input-label="Celular"
+              font-label="Poppins Medium"
+              mask="(99)99999-9999"
+              :auto-clear="false"
+              placeholder="Digite um celular"
+            />
+
+            <FormInputText
+              class="one-field"
+              input-label="Nome de Usuário"
+              placeholder="Digite um nome de usuário"
+              font-label="Poppins Medium"
+            />
+
+            <FormInputMask
+              input-label="CPF"
+              font-label="Poppins Medium"
+              placeholder="Informe o CPF"
+              mask="999.999.999-99"
+            />
+
+            <FormInputText
+              class="one-field"
+              input-label="Senha"
+              placeholder="Digite sua senha"
+              font-label="Poppins Medium"
+            />
+
+            <FormInputText
+              class="one-field"
+              input-label="Confirme sua Senha"
+              placeholder="Digite sua senha"
+              font-label="Poppins Medium"
+            />
+
+            <FormRadioButton
+              class="one-field"
+              input-label="Gênero"
+              fontLabel="Poppins Medium"
+              fontLabelRadio="Poppins Regular"
+              :options="optionsStatus"
+              option-label="label"
+              option-value="value"
+            />
+
+            <FormInputText
+              class="one-field"
+              input-label="Estado"
+              placeholder="Digite o estado em que vive"
+              font-label="Poppins Medium"
+            />
+
+            <FormInputText
+              class="one-field"
+              input-label="Cidade"
+              placeholder="Digite a cidade onde mora"
+              font-label="Poppins Medium"
+            />
+
+            <FormInputText
+              class="one-field"
+              input-label="Endereço"
+              placeholder="Digite seu endereço"
+              font-label="Poppins Medium"
+            />
+          </div>
         </div>
       </div>
     </CardTitle>
@@ -54,6 +158,6 @@ export default defineComponent({
 
 <style scoped>
 .form-profile {
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 </style>
