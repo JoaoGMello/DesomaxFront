@@ -1,5 +1,6 @@
 <script lang="ts">
 import CarCard from "@/components/molecules/CarCard/CarCard.vue";
+import axios from "axios";
 import { defineComponent } from "vue";
 const name = 'Home'
 
@@ -10,7 +11,9 @@ export default defineComponent({
 
   // props: { },
 
-  mounted () { },
+  mounted () { 
+    this.getAllCars()
+  },
 
   updated () { },
 
@@ -20,7 +23,14 @@ export default defineComponent({
     }
   },
 
-  methods: { },
+  methods: { 
+    getAllCars() {
+      axios.get(`https://localhost:7148/api/Car/GetAllCars`)
+      .then((response) => {
+        console.log(response)
+      })
+    }
+  },
 
   computed: { }, 
 
