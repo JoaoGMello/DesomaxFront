@@ -36,16 +36,14 @@ export default defineComponent({
 
 <template>
   <div class="login-container flex h-full">
-    <div
-      class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-orange-200"
-    >
-      <Image
-        imgWidth="80%"
-        imgHeight="80%"
-        imgHeightResp="80%"
-        imageName="cleaning-service-orange-img.svg"
-      />
-    </div>
+      <a href="https://storyset.com/transport" target="_blank" class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-orange-200">
+        <Image
+          imgWidth="80%"
+          imgHeight="80%"
+          imgHeightResp="80%"
+          imageName="car_login_image.svg"
+        />
+      </a>
 
     <div class="h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center">
       <div
@@ -59,7 +57,7 @@ export default defineComponent({
         <div
           class="note1:text-[0.95rem] monitor1:text-[1.1rem] text-[var(--tertiary-color)] poppins-regular label-login"
         >
-          Produtos de limpeza de alta qualidade
+          Encontre seu veículo ideal
         </div>
 
         <div class="note1:w-[90%] note2:w-[28rem] monitor1:w-[30rem] inputs-content pt-4">

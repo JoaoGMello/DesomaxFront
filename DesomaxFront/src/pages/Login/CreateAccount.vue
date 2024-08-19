@@ -50,16 +50,14 @@ export default defineComponent({
 
 <template>
   <div class="login-container flex h-full">
-    <div
-      class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-orange-200"
-    >
+    <a href="https://storyset.com/transport" target="_blank" class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-orange-200">
       <Image
         imgWidth="80%"
         imgHeight="80%"
         imgHeightResp="80%"
         imageName="Enthusiastic-cuate-img.svg"
       />
-    </div>
+    </a>
 
     <div class="h-full w-[50%] pt-8 px-8 flex flex-col items-center justify-between">
       <div

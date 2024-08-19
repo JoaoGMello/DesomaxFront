@@ -20,14 +20,19 @@ const router = createRouter({
       children: [
         {
           path: '/home',
-          name: 'home',
+          name: 'Home',
           component: () => import('../pages/Home/Home.vue')
         },
         {
           path: '/my-profile',
-          name: 'prfile',
+          name: 'Profile',
           component: () => import('../pages/Profile/Profile.vue')
-        }
+        },
+        {
+          path: '/add-vehicle',
+          name: 'AddVehicle',
+          component: () => import('../pages/AddVehicle/AddVehicle.vue')
+        },
       ]
     }
   ]
