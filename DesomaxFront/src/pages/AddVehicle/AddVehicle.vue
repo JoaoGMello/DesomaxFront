@@ -1,12 +1,11 @@
 <script lang="ts">
-import ContentPopup from '@/components/organisms/Popup/components/ContentPopup.vue'
 import { defineComponent } from 'vue'
 const name = 'AddVehicle'
 
 export default defineComponent({
   name,
 
-  components: { ContentPopup },
+  components: {},
 
   // props: { },
 
@@ -15,7 +14,7 @@ export default defineComponent({
   updated() {},
 
   data() {
-    return { popUpAddImage: false }
+    return {}
   },
 
   methods: {},
@@ -25,9 +24,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
-    <ContentPopup v-model="popUpAddImage" title="Adicionar Imagem"> </ContentPopup>
-  </div>
+  <div></div>
 </template>
 
 <style scoped></style>

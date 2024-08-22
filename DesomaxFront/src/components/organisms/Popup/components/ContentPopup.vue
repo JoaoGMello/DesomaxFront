@@ -106,7 +106,11 @@ export default defineComponent({
       <div class="grid relative w-full pt-[2rem] pb-[0.7rem]">
         <div class="relative flex flex-col justify-self-center icone-popup">
           <!-- <img class="h-[22px]" :src="caminhoDivisor"/> -->
-          <div class="title flex justify-center text-center">{{ title }}</div>
+          <div
+            class="flex justify-center text-center note1:text-[1.5rem] monitor1:text-[2.1rem] text-[var(--primary-color)] poppins-medium"
+          >
+            {{ title }}
+          </div>
           <div
             v-if="subTitle != '--'"
             class="flex justify-center text-center text-[#626262] font-medium text-lg pt-5"
@@ -115,7 +119,7 @@ export default defineComponent({
           </div>
         </div>
         <div
-          class="absolute flex justify-self-end items-center pt-[1.2rem] cross"
+          class="absolute flex justify-self-end items-center pt-[1.2rem] pr-3 cross"
           @click="$emit('update:modelValue', false)"
         >
           <Cross class="cursor-pointer" v-if="closable" />
@@ -126,19 +130,8 @@ export default defineComponent({
         <slot></slot>
       </div>
 
-      <div v-if="hasButton" class="flex gap-10 items-center justify-center pb-[2.4rem] pt-[1rem]">
-        <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-6 monitor1:mt-8">
-          <PrimaryButton
-            text="acessar"
-            button-color="var(--primary-color)"
-            hover-color="#ff8819"
-            rounding="10px"
-            uppercase
-          >
-          </PrimaryButton>
-        </div>
-
-        <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-6 monitor1:mt-8">
+      <div v-if="hasButton" class="flex gap-10 items-center justify-center pt-[1rem]">
+        <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem]">
           <PrimaryButton
             text="acessar"
             button-color="var(--tertiary-color)"
@@ -148,9 +141,18 @@ export default defineComponent({
           >
           </PrimaryButton>
         </div>
-      </div>
 
-      <div></div>
+        <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem]">
+          <PrimaryButton
+            text="acessar"
+            button-color="var(--primary-color)"
+            hover-color="#ff8819"
+            rounding="10px"
+            uppercase
+          >
+          </PrimaryButton>
+        </div>
+      </div>
     </div>
   </Popup>
 </template>

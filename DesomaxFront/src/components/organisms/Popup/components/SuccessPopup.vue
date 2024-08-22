@@ -14,6 +14,11 @@ export default defineComponent({
     modelValue: {
       type: Boolean,
       default: false
+    },
+
+    message: {
+      type: String,
+      default: '--'
     }
   },
 
@@ -34,7 +39,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <Popup v-model="value">
+  <Popup v-model="value" height="20rem" width="45rem">
     <div class="grid w-full h-full rounded-[30px] bg-[white] p-5 popup-success">
       <div class="header grid pb-[0.7rem]">
         <!-- <div class="relative flex justify-self-center self-center icone-popup pt-10"><img :src="returnSuccessIcon"/></div> -->
