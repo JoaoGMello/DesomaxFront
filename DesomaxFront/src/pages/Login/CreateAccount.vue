@@ -1,10 +1,11 @@
 <script lang="ts">
+import InsertUser from '@/classes/InsertUser'
 import Image from '@/components/atoms/Image/Image.vue'
 import Loading from '@/components/atoms/Loading/Loading.vue'
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInputMask.vue'
 import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
-import FormRadioButton from '@/components/molecules/Inputs/FormRadioButton/FormRadioButton.vue'
+import axios from 'axios'
 import { defineComponent } from 'vue'
 const name = 'CreateAccount'
 
@@ -16,7 +17,6 @@ export default defineComponent({
     Image,
     FormInputText,
     FormInputMask,
-    FormRadioButton,
     PrimaryButton,
     Loading
   },
@@ -31,11 +31,23 @@ export default defineComponent({
     return {
       mask: '99999999999',
       regex: /[^0-9]+/g,
-      loading: false
+      loading: false,
+      payload: new InsertUser()
     }
   },
 
   methods: {
+    insertUser() {
+      axios
+        .post(`https://localhost:7148/api/User/InsertUser`, this.payload)
+        .then((response) => {
+          console.log(response)
+        })
+        .finally(() => {
+          this.$router.push('/')
+        })
+    },
+
     changeMask(phone: string) {
       const phoneSize = phone.replace(this.regex, '').length
 
@@ -50,7 +62,11 @@ export default defineComponent({
 
 <template>
   <div class="login-container flex h-full">
-    <a href="https://storyset.com/transport" target="_blank" class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-orange-200">
+    <a
+      href="https://storyset.com/transport"
+      target="_blank"
+      class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-orange-200"
+    >
       <Image
         imgWidth="80%"
         imgHeight="80%"
@@ -72,6 +88,7 @@ export default defineComponent({
           input-label="Nome"
           placeholder="Digite seu nome"
           font-label="Poppins Medium"
+          v-model="payload.firstName"
         />
 
         <FormInputText
@@ -79,6 +96,7 @@ export default defineComponent({
           input-label="Sobrenome"
           placeholder="Digite seu sobrenome"
           font-label="Poppins Medium"
+          v-model="payload.lastName"
         />
 
         <FormInputText
@@ -86,6 +104,7 @@ export default defineComponent({
           input-label="E-mail"
           placeholder="Digite seu e-mail"
           font-label="Poppins Medium"
+          v-model="payload.email"
         />
 
         <FormInputMask
@@ -95,6 +114,7 @@ export default defineComponent({
           mask="(99)99999-9999"
           :auto-clear="false"
           placeholder="Digite um celular"
+          v-model="payload.phone"
         />
 
         <FormInputText
@@ -102,6 +122,7 @@ export default defineComponent({
           input-label="Nome de Usuário"
           placeholder="Digite um nome de usuário"
           font-label="Poppins Medium"
+          v-model="payload.userName"
         />
 
         <FormInputMask
@@ -109,6 +130,7 @@ export default defineComponent({
           font-label="Poppins Medium"
           placeholder="Informe o CPF"
           mask="999.999.999-99"
+          v-model="payload.cpf"
         />
 
         <FormInputText
@@ -116,6 +138,7 @@ export default defineComponent({
           input-label="Senha"
           placeholder="Digite sua senha"
           font-label="Poppins Medium"
+          v-model="payload.password"
         />
 
         <FormInputText
@@ -143,7 +166,7 @@ export default defineComponent({
           hover-color="#ff8819"
           rounding="10px"
           uppercase
-          @click="$router.push('/')"
+          @click="insertUser"
         >
           <Loading />
         </PrimaryButton>
