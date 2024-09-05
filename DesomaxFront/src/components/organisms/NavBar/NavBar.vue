@@ -34,6 +34,7 @@ export default defineComponent({
         <li><a href="/add-vehicle">Meus veículos anunciados</a></li>
         <li><a href="/add-vehicle">Anuncie seu veículo</a></li>
         <li><a href="/my-profile">Perfil</a></li>
+        <li><a href="/">Sair</a></li>
       </ul>
     </nav>
   </div>

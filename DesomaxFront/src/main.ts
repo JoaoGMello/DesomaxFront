@@ -8,11 +8,14 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import PrimeVue from 'primevue/config'
+import ToastService from 'primevue/toastservice'
+import mitt from 'mitt'
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(ToastService)
 app.use(PrimeVue, {
     locale: {
       startsWith: 'Começa com',
@@ -73,3 +76,8 @@ app.use(PrimeVue, {
   })
 
 app.mount('#app')
+
+const emitter = mitt()
+app.config.globalProperties.mitt = emitter
+
+export const appToast = app.config.globalProperties.$toast

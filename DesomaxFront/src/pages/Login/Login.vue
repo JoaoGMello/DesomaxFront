@@ -5,6 +5,8 @@ import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import InputTextLogin from './components/InputTextLogin.vue'
 import InputPasswordLogin from './components/InputPasswordLogin.vue'
 import Image from '@/components/atoms/Image/Image.vue'
+import axios from 'axios'
+import ETypeToast, { toast } from '@/tools/toast'
 
 const name = 'Login'
 
@@ -28,7 +30,26 @@ export default defineComponent({
     }
   },
 
-  methods: {},
+  methods: {
+    getUserByNameAndPassword() {
+      this.loading = true
+
+      const payload = {
+        userName: this.userName,
+        password: this.password,
+      }
+
+      axios.post(`https://localhost:7148/api/User/GetUserByNameAndPassword`, payload).then((response) => {
+        toast(ETypeToast.Error, 'Ocorreu um erro.', response.data.message ?? 'Não foi possível fazer o login, tente novamente.');
+      })
+      .catch(({response}) => {
+        toast(ETypeToast.Error, 'Ocorreu um erro.', response.data.message ?? 'Não foi possível fazer o login, tente novamente.');
+      })
+      .finally(() => {
+        this.loading = false
+      })
+    }
+  },
 
   computed: {}
 })
@@ -75,7 +96,7 @@ export default defineComponent({
             hover-color="#ff8819"
             rounding="10px"
             uppercase
-            @click="$router.push('/home')"
+            @click="getUserByNameAndPassword"
           >
             <Loading />
           </PrimaryButton>

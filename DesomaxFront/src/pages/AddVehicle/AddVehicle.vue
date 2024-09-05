@@ -52,27 +52,48 @@ export default defineComponent({
             <FormInputText
               class="model"
               input-label="Modelo"
-              placeholder="Digite seu endereço"
+              placeholder="Digite o modelo do veículo"
               font-label="Poppins Medium"
             />
 
             <FormInputText
               class="brand"
               input-label="Marca"
-              placeholder="Digite seu endereço"
+              placeholder="Digite a marca do veículo"
               font-label="Poppins Medium"
             />
 
             <FormTextArea
               class="description"
               input-label="Descrição"
-              placeholder="Digite seu endereço"
+              placeholder="Digite uma breve descrição"
               font-label="Poppins Medium"
             />
 
             <AddFileUpload
               class="image"
               title="Imagem"
+            />
+
+            <FormInputText
+              class="date"
+              input-label="Ano de fabricação"
+              placeholder="Digite o ano de fabricação"
+              font-label="Poppins Medium"
+            />
+
+            <FormInputText
+              class="km"
+              input-label="Quilometragem"
+              placeholder="Digite a quilometragem"
+              font-label="Poppins Medium"
+            />
+
+            <FormInputText
+              class="price"
+              input-label="Preço"
+              placeholder="Digite o valor do veículo"
+              font-label="Poppins Medium"
             />
           </div>
         </div>
