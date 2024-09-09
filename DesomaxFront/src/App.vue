@@ -1,11 +1,12 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import Toast from 'primevue/toast';
 const name = 'App'
 
 export default defineComponent({
   name,
 
-  components: { }, 
+  components: { Toast }, 
 
   props: { },
 
@@ -26,6 +27,7 @@ export default defineComponent({
 
 <template>
   <div class="size-full">
+    <Toast  />
     <router-view></router-view>
   </div>
 </template>

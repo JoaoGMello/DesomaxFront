@@ -3,6 +3,56 @@
 @tailwind utilities;
 
 :root {
+  --cor-1 : #0d89ec;
+  --cor-12: rgba(33, 150, 243, 0.24);
+  --cor-13: rgba(0, 0, 0, 0.2);
+  --cor-21: #323232;
+  --cor-22: #191919;
+  --cor-25: #e74c3c;
+  --cor-26: #c0392b;
+  --cor-30: rgba(96, 125, 139, 0.04);
+  --cor-31: #89d4fe;
+  --cor-33: rgba(2, 136, 209, 0.04);
+  --cor-34: rgba(2, 136, 209, 0.16);
+  --cor-44: rgba(251, 192, 45, 0.04);
+  --cor-45: rgba(251, 192, 45, 0.16);
+  --cor-5 : #2196F3;
+  --cor-50: rgba(156, 39, 176, 0.04);
+  --cor-51: rgba(156, 39, 176, 0.16);
+  --cor-55: rgba(211, 47, 47, 0.04);
+  --cor-56: rgba(211, 47, 47, 0.16);
+  --cor-57: #fff;
+  --cor-58: rgba(0, 0, 0, 0.4);
+  --cor-61: #fcfcfc;
+  --cor-62: #6cbbf5;
+  --cor-63: rgba(255, 255, 255, 0);
+  --cor-64: rgba(255, 255, 255, 0.1);
+  --cor-65: rgba(255, 255, 255, 0.2);
+  --cor-66: #B3E5FC;
+  --cor-67: #0891cf;
+  --cor-68: #044868;
+  --cor-69: #C8E6C9;
+  --cor-70: #439446;
+  --cor-71: #224a23;
+  --cor-72: #FFECB3;
+  --cor-73: #d9a300;
+  --cor-74: #6d5100;
+  --cor-75: #FFCDD2;
+  --cor-76: #e60017;
+  --cor-77: #73000c;
+  --cor-78: rgba(255, 255, 255, 0.3);
+  --cor-79: rgba(0, 0, 0, 0.5);
+  --cor-80: rgba(255, 255, 255, 0.4);
+  --cor-81: rgba(0, 0, 0, 0.9);
+  --cor-82: rgba(0, 0, 0, 0.7);
+  --cor-83: rgba(0, 0, 0, 0.8);
+  --cor-84: #b6bfc8;
+  --cor-86: #343a40;
+  --cor-87: #f2f2f2;
+  --cor-88: rgba(255, 255, 255, 0.6);
+  --cor-89: rgba(96, 125, 139, 0.16);
+
+
   --black: #434343;
   --hover-primary-color: #ff8819;
   --invalid-color: #f44336;
@@ -171,6 +221,86 @@
   background-color: #c2c2c2;
 }
 
+.p-toast {
+  opacity: 0.9;
+}
+.p-toast .p-toast-message {
+  margin: 0 0 1rem 0;
+  box-shadow: 0 2px 4px -1px var(--cor-12), 0 4px 5px 0 var(--cor-14), 0 1px 10px 0 var(--cor-15);
+  border-radius: 3px;
+}
+.p-toast .p-toast-message .p-toast-message-content {
+  padding: 1rem;
+  border-width: 0 0 0 6px;
+}
+.p-toast .p-toast-message .p-toast-message-content .p-toast-message-text {
+  margin: 0 0 0 1rem;
+}
+.p-toast .p-toast-message .p-toast-message-content .p-toast-message-icon {
+  font-size: 2rem;
+}
+.p-toast .p-toast-message .p-toast-message-content .p-toast-summary {
+  font-weight: 700;
+}
+.p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
+  margin: 0.5rem 0 0 0;
+}
+.p-toast .p-toast-message .p-toast-icon-close {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.p-toast .p-toast-message .p-toast-icon-close:hover {
+  background: var(--cor-78);
+}
+.p-toast .p-toast-message .p-toast-icon-close:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem var(--inputBoxShadowColor);
+}
+.p-toast .p-toast-message.p-toast-message-info {
+  background: var(--cor-66);
+  border: solid var(--cor-67);
+  border-width: 0 0 0 6px;
+  color: var(--cor-68);
+}
+.p-toast .p-toast-message.p-toast-message-info .p-toast-message-icon,
+.p-toast .p-toast-message.p-toast-message-info .p-toast-icon-close {
+  color: var(--cor-68);
+}
+.p-toast .p-toast-message.p-toast-message-success {
+  background: var(--cor-69);
+  border: solid var(--cor-70);
+  border-width: 0 0 0 6px;
+  color: var(--cor-71);
+}
+.p-toast .p-toast-message.p-toast-message-success .p-toast-message-icon,
+.p-toast .p-toast-message.p-toast-message-success .p-toast-icon-close {
+  color: var(--cor-71);
+}
+.p-toast .p-toast-message.p-toast-message-warn {
+  background: var(--cor-72);
+  border: solid var(--cor-73);
+  border-width: 0 0 0 6px;
+  color: var(--cor-74);
+}
+.p-toast .p-toast-message.p-toast-message-warn .p-toast-message-icon,
+.p-toast .p-toast-message.p-toast-message-warn .p-toast-icon-close {
+  color: var(--cor-74);
+}
+.p-toast .p-toast-message.p-toast-message-error {
+  background: var(--cor-75);
+  border: solid var(--cor-76);
+  border-width: 0 0 0 6px;
+  color: var(--cor-77);
+}
+.p-toast .p-toast-message.p-toast-message-error .p-toast-message-icon,
+.p-toast .p-toast-message.p-toast-message-error .p-toast-icon-close {
+  color: var(--cor-77);
+}
+
 @media (min-width: 1024px) {
   .spacing {
     padding: 1rem 1.25rem 1rem !important;
@@ -193,10 +323,6 @@
 }
 
 @media (min-width: 1920px) {
-}
-
-.p-toast .p-toast-message .p-toast-message-content {
-  border-width: 0 !important;
 }
 
 .custom-tooltip {

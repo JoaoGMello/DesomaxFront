@@ -40,10 +40,12 @@ export default defineComponent({
       }
 
       axios.post(`https://localhost:7148/api/User/GetUserByNameAndPassword`, payload).then((response) => {
-        toast(ETypeToast.Error, 'Ocorreu um erro.', response.data.message ?? 'Não foi possível fazer o login, tente novamente.');
+        console.log(response)
+        // this.$storeHandler.login.logedUser.logedUserData.infoData(response.data)
+        this.$router.push('/home')
       })
-      .catch(({response}) => {
-        toast(ETypeToast.Error, 'Ocorreu um erro.', response.data.message ?? 'Não foi possível fazer o login, tente novamente.');
+      .catch(() => {
+        toast(ETypeToast.Error, 'Ocorreu um erro.', 'Não foi possível fazer o login, tente novamente.');
       })
       .finally(() => {
         this.loading = false
