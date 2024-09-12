@@ -1,4 +1,5 @@
 <script lang="ts">
+import CarDetailsViewModel from '@/classes/CarDetailsViewModel'
 import CarCard from '@/components/molecules/CarCard/CarCard.vue'
 import axios from 'axios'
 import { defineComponent } from 'vue'
@@ -19,14 +20,15 @@ export default defineComponent({
 
   data() {
     return {
-      items: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      carList: new CarDetailsViewModel()
     }
   },
 
   methods: {
     getAllCars() {
       axios.get(`https://localhost:7148/api/Car/GetAllCars`).then((response) => {
-        console.log(response)
+        this.carList = response.data
+        console.log(this.carList)
       })
     }
   },
@@ -37,7 +39,20 @@ export default defineComponent({
 
 <template>
   <div class="car-list-container p-5">
-    <CarCard v-for="(i, index) in items" :key="index" />
+    <CarCard
+      v-for="(i, index) in carList"
+      :key="index"
+      :brand="i.brand"
+      :model="i.model"
+      :image="i.image"
+      :price="i.price"
+      :km="i.km"
+      :color="i.color"
+      :description="i.description"
+      :year="i.year"
+      :city="i.city"
+      :state="i.state"
+    />
   </div>
 </template>
 

@@ -1,9 +1,12 @@
 <script lang="ts">
-import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue';
-import AddFileUpload from '@/components/molecules/AddFileUpload/AddFileUpload.vue';
-import CardTitle from '@/components/molecules/CardTitle/CardTitle.vue';
-import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue';
-import FormTextArea from '@/components/molecules/Inputs/FormTextArea/FormTextArea.vue';
+import InsertCar from '@/classes/InsertCar'
+import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
+import AddFileUpload from '@/components/molecules/AddFileUpload/AddFileUpload.vue'
+import CardTitle from '@/components/molecules/CardTitle/CardTitle.vue'
+import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
+import FormTextArea from '@/components/molecules/Inputs/FormTextArea/FormTextArea.vue'
+import ETypeToast, { toast } from '@/tools/toast'
+import axios from 'axios'
 import { defineComponent } from 'vue'
 const name = 'AddVehicle'
 
@@ -19,10 +22,50 @@ export default defineComponent({
   updated() {},
 
   data() {
-    return {}
+    return {
+      payload: new InsertCar()
+    }
   },
 
-  methods: {},
+  methods: {
+    file2Base64(file: File): Promise<string> {
+      return new Promise<string>((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => resolve(reader.result?.toString() || '')
+        reader.onerror = (error) => reject(error)
+      })
+    },
+
+    insertCar() {
+      if (
+        (this.payload.brand != '',
+        this.payload.model != '',
+        this.payload.image != '',
+        this.payload.price != '',
+        this.payload.km != '',
+        this.payload.color != '',
+        this.payload.year != '',
+        this.payload.description != '')
+      ) {
+        axios
+          .post(`https://localhost:7148/api/Car/InsertCar`, this.payload)
+          .then(() => {
+            toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
+            this.$router.push('/')
+          })
+          .catch(() => {
+            toast(
+              ETypeToast.Error,
+              'Ocorreu um erro.',
+              'Não foi adicionar o veículo, tente novamente.'
+            )
+          })
+      } else {
+        toast(ETypeToast.Error, 'Ocorreu um erro.', 'Preencha todas as informações para proseguir.')
+      }
+    }
+  },
 
   computed: {}
 })
@@ -42,6 +85,7 @@ export default defineComponent({
             hover-color="#ff8819"
             padding-resp="1rem 0"
             padding="1.2rem 0"
+            @click="console.log(payload)"
           />
         </div>
       </template>
@@ -54,6 +98,7 @@ export default defineComponent({
               input-label="Modelo"
               placeholder="Digite o modelo do veículo"
               font-label="Poppins Medium"
+              v-model="payload.model"
             />
 
             <FormInputText
@@ -61,6 +106,7 @@ export default defineComponent({
               input-label="Marca"
               placeholder="Digite a marca do veículo"
               font-label="Poppins Medium"
+              v-model="payload.brand"
             />
 
             <FormTextArea
@@ -68,18 +114,17 @@ export default defineComponent({
               input-label="Descrição"
               placeholder="Digite uma breve descrição"
               font-label="Poppins Medium"
+              v-model="payload.description"
             />
 
-            <AddFileUpload
-              class="image"
-              title="Imagem"
-            />
+            <AddFileUpload class="image" title="Imagem" @selected-image="payload.image = $event" />
 
             <FormInputText
               class="date"
               input-label="Ano de fabricação"
               placeholder="Digite o ano de fabricação"
               font-label="Poppins Medium"
+              v-model="payload.year"
             />
 
             <FormInputText
@@ -87,6 +132,7 @@ export default defineComponent({
               input-label="Quilometragem"
               placeholder="Digite a quilometragem"
               font-label="Poppins Medium"
+              v-model="payload.km"
             />
 
             <FormInputText
@@ -94,6 +140,15 @@ export default defineComponent({
               input-label="Preço"
               placeholder="Digite o valor do veículo"
               font-label="Poppins Medium"
+              v-model="payload.price"
+            />
+
+            <FormInputText
+              class="price"
+              input-label="Cor"
+              placeholder="Digite a cor do veículo"
+              font-label="Poppins Medium"
+              v-model="payload.color"
             />
           </div>
         </div>
@@ -105,11 +160,18 @@ export default defineComponent({
 <style scoped>
 .form-vehicle {
   grid-template-columns: repeat(3, 1fr);
-
 }
 
-.model {grid-area: 1 / 1 / 2 / 2;}
-.brand {grid-area: 1 / 2 / 2 / 3;}
-.description {grid-area: 2 / 1 / 3 / 3;}
-.image {grid-area: 1 / 3 / 3 / 4;}
+.model {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.brand {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.description {
+  grid-area: 2 / 1 / 3 / 3;
+}
+.image {
+  grid-area: 1 / 3 / 3 / 4;
+}
 </style>

@@ -5,6 +5,7 @@ import Loading from '@/components/atoms/Loading/Loading.vue'
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInputMask.vue'
 import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
+import ETypeToast, { toast } from '@/tools/toast'
 import axios from 'axios'
 import { defineComponent } from 'vue'
 const name = 'CreateAccount'
@@ -40,11 +41,16 @@ export default defineComponent({
     insertUser() {
       axios
         .post(`https://localhost:7148/api/User/InsertUser`, this.payload)
-        .then((response) => {
-          console.log(response)
-        })
-        .finally(() => {
+        .then(() => {
+          toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
           this.$router.push('/')
+        })
+        .catch(() => {
+          toast(
+            ETypeToast.Error,
+            'Ocorreu um erro.',
+            'Não foi adicionar o usuário, tente novamente.'
+          )
         })
     },
 

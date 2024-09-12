@@ -1,10 +1,10 @@
 <script lang="ts">
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import CardTitle from '@/components/molecules/CardTitle/CardTitle.vue'
-import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInputMask.vue';
-import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue';
-import FormRadioButton from '@/components/molecules/Inputs/FormRadioButton/FormRadioButton.vue';
-import LabelValue from '@/shared/LabelValue';
+import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInputMask.vue'
+import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
+import FormRadioButton from '@/components/molecules/Inputs/FormRadioButton/FormRadioButton.vue'
+import LabelValue from '@/shared/LabelValue'
 import { defineComponent } from 'vue'
 const name = 'Profile'
 
@@ -23,7 +23,7 @@ export default defineComponent({
     return {
       mask: '99999999999',
       regex: /[^0-9]+/g,
-      optionsStatus: [new LabelValue('Masculino', 0), new LabelValue('Feminino', 1)],
+      optionsStatus: [new LabelValue('Masculino', 0), new LabelValue('Feminino', 1)]
     }
   },
 
