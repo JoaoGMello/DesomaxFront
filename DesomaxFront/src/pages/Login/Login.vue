@@ -7,6 +7,7 @@ import InputPasswordLogin from './components/InputPasswordLogin.vue'
 import Image from '@/components/atoms/Image/Image.vue'
 import axios from 'axios'
 import ETypeToast, { toast } from '@/tools/toast'
+import { useLoginStore } from '@/store/loginStore'
 
 const name = 'Login'
 
@@ -17,6 +18,13 @@ export default defineComponent({
   components: { PrimaryButton, Loading, InputTextLogin, InputPasswordLogin, Image },
 
   //props: { },
+
+  setup() {
+    const store = useLoginStore()
+    return {
+      store
+    }
+  },
 
   mounted() {},
 
@@ -36,20 +44,25 @@ export default defineComponent({
 
       const payload = {
         userName: this.userName,
-        password: this.password,
+        password: this.password
       }
 
-      axios.post(`https://localhost:7148/api/User/GetUserByNameAndPassword`, payload).then((response) => {
-        console.log(response)
-        // this.$storeHandler.login.logedUser.logedUserData.infoData(response.data)
-        this.$router.push('/home')
-      })
-      .catch(() => {
-        toast(ETypeToast.Error, 'Ocorreu um erro.', 'Não foi possível fazer o login, tente novamente.');
-      })
-      .finally(() => {
-        this.loading = false
-      })
+      axios
+        .post(`https://localhost:7148/api/User/GetUserByNameAndPassword`, payload)
+        .then((response) => {
+          this.store.loginInfo.userId = response.data.id
+          this.$router.push('/home')
+        })
+        .catch(() => {
+          toast(
+            ETypeToast.Error,
+            'Ocorreu um erro.',
+            'Não foi possível fazer o login, tente novamente.'
+          )
+        })
+        .finally(() => {
+          this.loading = false
+        })
     }
   },
 
@@ -59,14 +72,13 @@ export default defineComponent({
 
 <template>
   <div class="login-container flex h-full">
-      <a href="https://storyset.com/transport" target="_blank" class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-orange-200">
-        <Image
-          imgWidth="80%"
-          imgHeight="80%"
-          imgHeightResp="80%"
-          imageName="car_login_image.svg"
-        />
-      </a>
+    <a
+      href="https://storyset.com/transport"
+      target="_blank"
+      class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-orange-200"
+    >
+      <Image imgWidth="80%" imgHeight="80%" imgHeightResp="80%" imageName="car_login_image.svg" />
+    </a>
 
     <div class="h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center">
       <div

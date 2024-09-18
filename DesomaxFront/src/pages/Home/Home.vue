@@ -1,6 +1,7 @@
 <script lang="ts">
 import CarDetailsViewModel from '@/classes/CarDetailsViewModel'
 import CarCard from '@/components/molecules/CarCard/CarCard.vue'
+import { useLoginStore } from '@/store/loginStore'
 import axios from 'axios'
 import { defineComponent } from 'vue'
 const name = 'Home'
@@ -12,7 +13,15 @@ export default defineComponent({
 
   // props: { },
 
+  setup() {
+    const store = useLoginStore()
+    return {
+      store
+    }
+  },
+
   mounted() {
+    console.log(this.store.loginInfo)
     this.getAllCars()
   },
 
@@ -28,7 +37,6 @@ export default defineComponent({
     getAllCars() {
       axios.get(`https://localhost:7148/api/Car/GetAllCars`).then((response) => {
         this.carList = response.data
-        console.log(this.carList)
       })
     }
   },

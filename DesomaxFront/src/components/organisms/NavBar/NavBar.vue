@@ -31,7 +31,7 @@ export default defineComponent({
       <a href="/home" class="logo">Desomax</a>
       <button class="hamburger" @click="active = !active"></button>
       <ul class="nav-list">
-        <li><a href="/add-vehicle">Meus veículos anunciados</a></li>
+        <li><a href="/my-vehicles">Meus veículos anunciados</a></li>
         <li><a href="/add-vehicle">Anuncie seu veículo</a></li>
         <li><a href="/my-profile">Perfil</a></li>
         <li><a href="/">Sair</a></li>
