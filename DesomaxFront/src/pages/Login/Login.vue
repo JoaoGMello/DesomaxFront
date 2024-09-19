@@ -50,7 +50,7 @@ export default defineComponent({
       axios
         .post(`https://localhost:7148/api/User/GetUserByNameAndPassword`, payload)
         .then((response) => {
-          this.store.loginInfo.userId = response.data.id
+          localStorage.setItem('loginInfo', JSON.stringify(response.data))
           this.$router.push('/home')
         })
         .catch(() => {
