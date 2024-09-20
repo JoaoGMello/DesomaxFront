@@ -9,12 +9,16 @@ export default defineComponent({
 
   // props: {},
 
-  mounted() {},
+  mounted() {
+    this.loginInfo = localStorage.getItem('loginInfo')
+  },
 
   updated() {},
 
   data() {
-    return {}
+    return {
+      loginInfo: ''
+    }
   },
 
   methods: {},

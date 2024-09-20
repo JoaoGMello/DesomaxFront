@@ -21,7 +21,7 @@ export default defineComponent({
   },
 
   mounted() {
-    this.loginInfo = localStorage.getItem('loginInfo')
+    this.loginInfo = localStorage.getItem('loginInfo') || ''
     console.log(this.loginInfo)
     this.getAllCars()
   },

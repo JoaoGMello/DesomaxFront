@@ -1,10 +1,13 @@
 <script lang="ts">
+import UserDetails from '@/classes/UserDetails'
+import UserId from '@/classes/UserId'
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import CardTitle from '@/components/molecules/CardTitle/CardTitle.vue'
 import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInputMask.vue'
 import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
 import FormRadioButton from '@/components/molecules/Inputs/FormRadioButton/FormRadioButton.vue'
 import LabelValue from '@/shared/LabelValue'
+import axios from 'axios'
 import { defineComponent } from 'vue'
 const name = 'Profile'
 
@@ -15,15 +18,21 @@ export default defineComponent({
 
   props: {},
 
-  mounted() {},
+  mounted() {
+    this.loginInfo = localStorage.getItem('loginInfo') || ''
+    console.log(this.loginInfo)
+    this.getUserById()
+  },
 
   updated() {},
 
   data() {
     return {
       mask: '99999999999',
+      loginInfo: '',
       regex: /[^0-9]+/g,
-      optionsStatus: [new LabelValue('Masculino', 0), new LabelValue('Feminino', 1)]
+      optionsStatus: [new LabelValue('Masculino', 0), new LabelValue('Feminino', 1)],
+      payload: new UserDetails()
     }
   },
 
@@ -33,6 +42,16 @@ export default defineComponent({
 
       if (phoneSize === 11) this.mask = '(99) 99999-9999'
       if (phoneSize === 10) this.mask = '(99) 9999-9999'
+    },
+
+    getUserById() {
+      const request = new UserId()
+
+      request.userId = this.loginInfo.replace(/[\\"]/g, '')
+
+      axios.post(`https://localhost:7148/api/User/GetUserById`, request).then((response) => {
+        this.payload = response.data
+      })
     }
   },
 
@@ -66,6 +85,7 @@ export default defineComponent({
               input-label="Nome"
               placeholder="Digite seu nome"
               font-label="Poppins Medium"
+              v-model:model-value="payload.firstName"
             />
 
             <FormInputText
@@ -73,6 +93,7 @@ export default defineComponent({
               input-label="Sobrenome"
               placeholder="Digite seu sobrenome"
               font-label="Poppins Medium"
+              v-model:model-value="payload.lastName"
             />
 
             <FormInputText
@@ -80,6 +101,7 @@ export default defineComponent({
               input-label="E-mail"
               placeholder="Digite seu e-mail"
               font-label="Poppins Medium"
+              v-model:model-value="payload.email"
             />
 
             <FormInputMask
@@ -89,6 +111,7 @@ export default defineComponent({
               mask="(99)99999-9999"
               :auto-clear="false"
               placeholder="Digite um celular"
+              v-model:model-value="payload.phone"
             />
 
             <FormInputText
@@ -96,6 +119,7 @@ export default defineComponent({
               input-label="Nome de Usuário"
               placeholder="Digite um nome de usuário"
               font-label="Poppins Medium"
+              v-model:model-value="payload.userName"
             />
 
             <FormInputMask
@@ -103,6 +127,7 @@ export default defineComponent({
               font-label="Poppins Medium"
               placeholder="Informe o CPF"
               mask="999.999.999-99"
+              v-model:model-value="payload.cpf"
             />
 
             <FormInputText
@@ -110,6 +135,7 @@ export default defineComponent({
               input-label="Senha"
               placeholder="Digite sua senha"
               font-label="Poppins Medium"
+              v-model:model-value="payload.password"
             />
 
             <FormInputText
@@ -117,6 +143,7 @@ export default defineComponent({
               input-label="Confirme sua Senha"
               placeholder="Digite sua senha"
               font-label="Poppins Medium"
+              v-model:model-value="payload.password"
             />
 
             <FormRadioButton
@@ -127,6 +154,7 @@ export default defineComponent({
               :options="optionsStatus"
               option-label="label"
               option-value="value"
+              v-model:model-value="payload.gender"
             />
 
             <FormInputText
@@ -134,6 +162,7 @@ export default defineComponent({
               input-label="Estado"
               placeholder="Digite o estado em que vive"
               font-label="Poppins Medium"
+              v-model:model-value="payload.state"
             />
 
             <FormInputText
@@ -141,6 +170,7 @@ export default defineComponent({
               input-label="Cidade"
               placeholder="Digite a cidade onde mora"
               font-label="Poppins Medium"
+              v-model:model-value="payload.city"
             />
 
             <FormInputText
@@ -148,6 +178,7 @@ export default defineComponent({
               input-label="Endereço"
               placeholder="Digite seu endereço"
               font-label="Poppins Medium"
+              v-model:model-value="payload.address"
             />
           </div>
         </div>
