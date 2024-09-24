@@ -7,6 +7,7 @@ import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInput
 import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
 import FormRadioButton from '@/components/molecules/Inputs/FormRadioButton/FormRadioButton.vue'
 import LabelValue from '@/shared/LabelValue'
+import ETypeToast, { toast } from '@/tools/toast'
 import axios from 'axios'
 import { defineComponent } from 'vue'
 const name = 'Profile'
@@ -20,7 +21,7 @@ export default defineComponent({
 
   mounted() {
     this.loginInfo = localStorage.getItem('loginInfo') || ''
-    console.log(this.loginInfo)
+    this.payload.id = this.loginInfo.replace(/[\\"]/g, '')
     this.getUserById()
   },
 
@@ -52,6 +53,21 @@ export default defineComponent({
       axios.post(`https://localhost:7148/api/User/GetUserById`, request).then((response) => {
         this.payload = response.data
       })
+    },
+
+    updateUser() {
+      axios
+        .put(`https://localhost:7148/api/User/UpdateUser`, this.payload)
+        .then(() => {
+          toast(ETypeToast.Success, 'Sucesso!', 'Usuário alterado com sucesso!')
+        })
+        .catch(() => {
+          toast(
+            ETypeToast.Error,
+            'Ocorreu um erro.',
+            'Não foi possível atualizar o usuário, tente novamente.'
+          )
+        })
     }
   },
 
@@ -73,6 +89,7 @@ export default defineComponent({
             hover-color="#ff8819"
             padding-resp="1rem 0"
             padding="1.2rem 0"
+            @click="updateUser"
           />
         </div>
       </template>
