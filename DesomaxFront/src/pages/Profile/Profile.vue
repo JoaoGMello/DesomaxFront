@@ -33,7 +33,8 @@ export default defineComponent({
       loginInfo: '',
       regex: /[^0-9]+/g,
       optionsStatus: [new LabelValue('Masculino', 0), new LabelValue('Feminino', 1)],
-      payload: new UserDetails()
+      payload: new UserDetails(),
+      confirmPassword: ''
     }
   },
 
@@ -52,22 +53,69 @@ export default defineComponent({
 
       axios.post(`https://localhost:7148/api/User/GetUserById`, request).then((response) => {
         this.payload = response.data
+        this.confirmPassword = this.payload.password
       })
     },
 
     updateUser() {
-      axios
-        .put(`https://localhost:7148/api/User/UpdateUser`, this.payload)
-        .then(() => {
-          toast(ETypeToast.Success, 'Sucesso!', 'Usuário alterado com sucesso!')
-        })
-        .catch(() => {
-          toast(
-            ETypeToast.Error,
-            'Ocorreu um erro.',
-            'Não foi possível atualizar o usuário, tente novamente.'
-          )
-        })
+      const validPassword = this.isValidPassword(this.payload.password)
+      if (validPassword) {
+        axios
+          .put(`https://localhost:7148/api/User/UpdateUser`, this.payload)
+          .then(() => {
+            toast(ETypeToast.Success, 'Sucesso!', 'Usuário alterado com sucesso!')
+          })
+          .catch(() => {
+            toast(
+              ETypeToast.Error,
+              'Ocorreu um erro.',
+              'Não foi possível atualizar o usuário, tente novamente.'
+            )
+          })
+      }
+    },
+
+    isValidPassword(password: string) {
+      if (password.length < 8) {
+        toast(ETypeToast.Error, 'Ocorreu um erro.', 'A senha deve conter no mínimo 8 caracteres')
+        return false
+      }
+
+      const numberRegex = /\d/gm
+
+      if (password.match(numberRegex) === null) {
+        toast(
+          ETypeToast.Error,
+          'Ocorreu um erro.',
+          'A senha deve conter no mínimo um caracter numérico'
+        )
+        return false
+      }
+      const upperCaseRegex = /[A-Z]/gm
+      if (password.match(upperCaseRegex) === null) {
+        toast(
+          ETypeToast.Error,
+          'Ocorreu um erro.',
+          'A senha deve conter no mínimo um caracter maiúsculo'
+        )
+        return false
+      }
+      const specialCharRegex = /[?'",.>,()\-_çÇ=+%$#@&*!`~|/]/gm
+      if (password.match(specialCharRegex) === null) {
+        toast(
+          ETypeToast.Error,
+          'Ocorreu um erro.',
+          'A senha deve conter no mínimo um caracter especial'
+        )
+        return false
+      }
+
+      if (password != this.confirmPassword) {
+        toast(ETypeToast.Error, 'Ocorreu um erro.', 'As senhas não são as mesmas')
+        return false
+      }
+
+      return true
     }
   },
 
@@ -160,7 +208,7 @@ export default defineComponent({
               input-label="Confirme sua Senha"
               placeholder="Digite sua senha"
               font-label="Poppins Medium"
-              v-model:model-value="payload.password"
+              v-model:model-value="confirmPassword"
             />
 
             <FormRadioButton

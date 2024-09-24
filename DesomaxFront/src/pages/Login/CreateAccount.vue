@@ -33,25 +33,92 @@ export default defineComponent({
       mask: '99999999999',
       regex: /[^0-9]+/g,
       loading: false,
-      payload: new InsertUser()
+      payload: new InsertUser(),
+      confirmPassword: ''
     }
   },
 
   methods: {
     insertUser() {
-      axios
-        .post(`https://localhost:7148/api/User/InsertUser`, this.payload)
-        .then(() => {
-          toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
-          this.$router.push('/')
-        })
-        .catch(() => {
-          toast(
-            ETypeToast.Error,
-            'Ocorreu um erro.',
-            'Não foi adicionar o usuário, tente novamente.'
-          )
-        })
+      if (
+        this.payload.firstName != '' ||
+        this.payload.lastName != '' ||
+        this.payload.lastName != '' ||
+        this.payload.email != '' ||
+        this.payload.phone != '' ||
+        this.payload.userName != '' ||
+        this.payload.cpf != '' ||
+        this.payload.password != '' ||
+        this.confirmPassword != ''
+      ) {
+        toast(
+          ETypeToast.Error,
+          'Ocorreu um erro.',
+          'Preencha todas as informações, tente novamente.'
+        )
+
+        return false
+      }
+      const validPassword = this.isValidPassword(this.payload.password)
+
+      if (validPassword) {
+        axios
+          .post(`https://localhost:7148/api/User/InsertUser`, this.payload)
+          .then(() => {
+            toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
+            this.$router.push('/')
+          })
+          .catch(() => {
+            toast(
+              ETypeToast.Error,
+              'Ocorreu um erro.',
+              'Não foi possível adicionar o usuário, tente novamente.'
+            )
+          })
+      }
+    },
+
+    isValidPassword(password: string) {
+      if (password.length < 8) {
+        toast(ETypeToast.Error, 'Ocorreu um erro.', 'A senha deve conter no mínimo 8 caracteres')
+        return false
+      }
+
+      const numberRegex = /\d/gm
+
+      if (password.match(numberRegex) === null) {
+        toast(
+          ETypeToast.Error,
+          'Ocorreu um erro.',
+          'A senha deve conter no mínimo um caracter numérico'
+        )
+        return false
+      }
+      const upperCaseRegex = /[A-Z]/gm
+      if (password.match(upperCaseRegex) === null) {
+        toast(
+          ETypeToast.Error,
+          'Ocorreu um erro.',
+          'A senha deve conter no mínimo um caracter maiúsculo'
+        )
+        return false
+      }
+      const specialCharRegex = /[?'",.>,()\-_çÇ=+%$#@&*!`~|/]/gm
+      if (password.match(specialCharRegex) === null) {
+        toast(
+          ETypeToast.Error,
+          'Ocorreu um erro.',
+          'A senha deve conter no mínimo um caracter especial'
+        )
+        return false
+      }
+
+      if (password != this.confirmPassword) {
+        toast(ETypeToast.Error, 'Ocorreu um erro.', 'As senhas não são as mesmas')
+        return false
+      }
+
+      return true
     },
 
     changeMask(phone: string) {
@@ -152,6 +219,7 @@ export default defineComponent({
           input-label="Confirme sua Senha"
           placeholder="Digite sua senha"
           font-label="Poppins Medium"
+          v-model="confirmPassword"
         />
       </div>
 
