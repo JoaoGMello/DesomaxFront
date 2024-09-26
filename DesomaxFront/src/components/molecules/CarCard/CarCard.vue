@@ -1,6 +1,8 @@
 <script lang="ts">
 import Icon from '@/components/atoms/Icon/Icon.vue'
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
+import ETypeToast, { toast } from '@/tools/toast'
+import axios from 'axios'
 import { defineComponent } from 'vue'
 const name = 'CarCard'
 
@@ -61,10 +63,22 @@ export default defineComponent({
     state: {
       type: String,
       default: ''
+    },
+
+    like: {
+      type: Boolean,
+      default: false
+    },
+
+    carId: {
+      type: String,
+      default: ''
     }
   },
 
-  mounted() {},
+  mounted() {
+    this.hasLike = this.like
+  },
 
   updated() {},
 
@@ -74,7 +88,27 @@ export default defineComponent({
     }
   },
 
-  methods: {},
+  methods: {
+    likeCar() {
+      this.hasLike = !this.hasLike
+      const payload = {
+        carId: this.carId,
+        like: this.hasLike
+      }
+      axios
+        .put(`https://localhost:7148/api/Car/LikeCar`, payload)
+        .then(() => {
+          toast(ETypeToast.Success, 'Sucesso!', 'Carro atualizado!')
+        })
+        .catch(() => {
+          toast(
+            ETypeToast.Error,
+            'Ocorreu um erro.',
+            'Não foi possível dar o like no carro, tente novamente.'
+          )
+        })
+    }
+  },
 
   computed: {}
 })
@@ -129,7 +163,7 @@ export default defineComponent({
       </div>
       <Icon
         class="pt-1 cursor-pointer"
-        @click="hasLike = !hasLike"
+        @click="likeCar()"
         :its-url="false"
         iconHeight="1.4rem"
         iconHeightResp="1.2rem"

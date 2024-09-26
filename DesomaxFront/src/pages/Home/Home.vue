@@ -22,7 +22,6 @@ export default defineComponent({
 
   mounted() {
     this.loginInfo = localStorage.getItem('loginInfo') || ''
-    console.log(this.loginInfo)
     this.getAllCars()
   },
 
@@ -39,6 +38,7 @@ export default defineComponent({
     getAllCars() {
       axios.get(`https://localhost:7148/api/Car/GetAllCars`).then((response) => {
         this.carList = response.data
+        console.log(this.carList)
       })
     }
   },
@@ -62,6 +62,8 @@ export default defineComponent({
       :year="i.year"
       :city="i.city"
       :state="i.state"
+      :like="i.like"
+      :car-id="i.id"
     />
   </div>
 </template>
