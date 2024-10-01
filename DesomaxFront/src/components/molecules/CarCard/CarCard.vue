@@ -1,6 +1,7 @@
 <script lang="ts">
 import Icon from '@/components/atoms/Icon/Icon.vue'
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
+import router from '@/router'
 import ETypeToast, { toast } from '@/tools/toast'
 import axios from 'axios'
 import { defineComponent } from 'vue'
@@ -107,6 +108,11 @@ export default defineComponent({
             'Não foi possível dar o like no carro, tente novamente.'
           )
         })
+    },
+
+    redirect() {
+      localStorage.setItem('CarId', this.carId)
+      this.$router.push('/vehicle-details')
     }
   },
 
@@ -142,6 +148,7 @@ export default defineComponent({
           hover-color="#ff8819"
           rounding="10px"
           uppercase
+          @click="redirect"
         />
       </div>
     </div>
