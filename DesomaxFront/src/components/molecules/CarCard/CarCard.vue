@@ -168,14 +168,14 @@ export default defineComponent({
           <div class="state font-semibold text-xs text-[#6f7d6c]">{{ state }}</div>
         </div>
       </div>
-      <Icon
+      <!-- <Icon
         class="pt-1 cursor-pointer"
         @click="likeCar()"
         :its-url="false"
         iconHeight="1.4rem"
         iconHeightResp="1.2rem"
         :iconName="hasLike ? 'pi pi-heart-fill' : 'pi pi-heart'"
-      />
+      /> -->
     </div>
   </div>
 </template>
