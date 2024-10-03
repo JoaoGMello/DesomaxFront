@@ -1,6 +1,7 @@
 <script lang="ts">
 import CarDetailsViewModel from '@/classes/CarDetailsViewModel'
 import Card from '@/components/atoms/Card/Card.vue'
+import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import CardTitle from '@/components/molecules/CardTitle/CardTitle.vue'
 import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInputMask.vue'
 import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
@@ -12,7 +13,7 @@ const name = 'VehicleDetails'
 export default defineComponent({
   name,
 
-  components: { Card, CardTitle, FormInputText, FormInputMask, FormTextArea },
+  components: { Card, CardTitle, FormInputText, FormInputMask, FormTextArea, PrimaryButton },
 
   // props: { },
 
@@ -42,8 +43,15 @@ export default defineComponent({
 
       axios.post(`https://localhost:7148/api/Car/GetCarById`, payload).then((response) => {
         this.carDetails = response.data[0]
-        console.log(this.carDetails)
       })
+    },
+
+    send_handle() {
+      const win = window.open(
+        `https://wa.me/18996892047?text=I%27m%20api%20msg%20hello%20${this.name}%20friend%20${this.message}`,
+        '_blank'
+      )
+      win.focus()
     }
   },
 
@@ -121,7 +129,22 @@ export default defineComponent({
             </div>
 
             <div class="flex flex-col gap-3 px-5">
-              <div class="price">R$ {{ carDetails.price }}</div>
+              <div class="flex items-center justify-between">
+                <div class="price">R$ {{ carDetails.price }}</div>
+                <div class="note1:h-[2.1rem] monitor1:h-[2.35rem] w-[11rem]">
+                  <PrimaryButton
+                    text="Enviar Mensagem"
+                    weight-text="500"
+                    icon-height-resp="0.95rem"
+                    icon-height="1rem"
+                    button-color="var(--primary-color)"
+                    hover-color="#ff8819"
+                    padding-resp="1rem 0"
+                    padding="1.2rem 0"
+                    @click="send_handle"
+                  />
+                </div>
+              </div>
 
               <div class="message">Envie uma mensagem para o vendedor</div>
 

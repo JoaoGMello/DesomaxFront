@@ -5,6 +5,7 @@ export default class InsertCar {
   public description: string = ''
   public year: string = ''
   public km: string = ''
-  public price: string = ''
+  public price: number = 0
   public color: string = ''
+  public userId: string = ''
 }

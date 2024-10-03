@@ -3,6 +3,7 @@ import InsertCar from '@/classes/InsertCar'
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import AddFileUpload from '@/components/molecules/AddFileUpload/AddFileUpload.vue'
 import CardTitle from '@/components/molecules/CardTitle/CardTitle.vue'
+import FormInputNumber from '@/components/molecules/Inputs/FormInputNumber/FormInputNumber.vue'
 import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
 import FormTextArea from '@/components/molecules/Inputs/FormTextArea/FormTextArea.vue'
 import ETypeToast, { toast } from '@/tools/toast'
@@ -13,36 +14,50 @@ const name = 'AddVehicle'
 export default defineComponent({
   name,
 
-  components: { CardTitle, PrimaryButton, FormInputText, FormTextArea, AddFileUpload },
+  components: {
+    CardTitle,
+    PrimaryButton,
+    FormInputText,
+    FormTextArea,
+    AddFileUpload,
+    FormInputNumber
+  },
 
   // props: { },
 
-  mounted() {},
+  mounted() {
+    this.loginInfo = localStorage.getItem('loginInfo') || ''
+    this.payload.userId = this.loginInfo.replace(/[\\"]/g, '')
+  },
 
   updated() {},
 
   data() {
     return {
-      payload: new InsertCar()
+      payload: new InsertCar(),
+      loginInfo: '',
+      aux: ''
     }
   },
 
   methods: {
-    file2Base64(file: File): Promise<string> {
-      return new Promise<string>((resolve, reject) => {
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = () => resolve(reader.result?.toString() || '')
-        reader.onerror = (error) => reject(error)
-      })
+    convertFileToBase64(file: File) {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onloadend = () => this.callback(reader.result)
+    },
+
+    callback(base64) {
+      this.payload.image = base64
+      this.aux = base64
     },
 
     insertCar() {
       if (
         (this.payload.brand != '',
         this.payload.model != '',
-        this.payload.image != '',
-        this.payload.price != '',
+        this.aux != '',
+        this.payload.price != 0,
         this.payload.km != '',
         this.payload.color != '',
         this.payload.year != '',
@@ -52,7 +67,7 @@ export default defineComponent({
           .post(`https://localhost:7148/api/Car/InsertCar`, this.payload)
           .then(() => {
             toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
-            this.$router.push('/')
+            this.$router.push('/home')
           })
           .catch(() => {
             toast(
@@ -85,7 +100,7 @@ export default defineComponent({
             hover-color="#ff8819"
             padding-resp="1rem 0"
             padding="1.2rem 0"
-            @click="console.log(payload)"
+            @click="insertCar"
           />
         </div>
       </template>
@@ -117,7 +132,11 @@ export default defineComponent({
               v-model="payload.description"
             />
 
-            <AddFileUpload class="image" title="Imagem" @selected-image="payload.image = $event" />
+            <AddFileUpload
+              class="image"
+              title="Imagem"
+              @selected-image="convertFileToBase64($event)"
+            />
 
             <FormInputText
               class="date"
@@ -135,7 +154,7 @@ export default defineComponent({
               v-model="payload.km"
             />
 
-            <FormInputText
+            <FormInputNumber
               class="price"
               input-label="Preço"
               placeholder="Digite o valor do veículo"
