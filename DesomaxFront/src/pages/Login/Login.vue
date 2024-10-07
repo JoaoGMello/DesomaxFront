@@ -54,11 +54,13 @@ export default defineComponent({
           this.$router.push('/home')
         })
         .catch(() => {
-          toast(
-            ETypeToast.Error,
-            'Ocorreu um erro.',
-            'Não foi possível fazer o login, tente novamente.'
-          )
+          setTimeout(() => {
+            toast(
+              ETypeToast.Error,
+              'Ocorreu um erro.',
+              'Não foi possível fazer o login, tente novamente.'
+            )
+          }, 1000)
         })
         .finally(() => {
           this.loading = false

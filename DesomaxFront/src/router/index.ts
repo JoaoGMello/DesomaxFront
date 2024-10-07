@@ -42,6 +42,11 @@ const router = createRouter({
           path: '/vehicle-details',
           name: 'vehicleDetails',
           component: () => import('../pages/VehicleDetails/VehicleDetails.vue')
+        },
+        {
+          path: '/edit-vehicle',
+          name: 'EditVehicle',
+          component: () => import('../pages/EditVehicle/EditVehicle.vue')
         }
       ]
     }

@@ -38,7 +38,6 @@ export default defineComponent({
     getAllCars() {
       axios.get(`https://localhost:7148/api/Car/GetAllCars`).then((response) => {
         this.carList = response.data
-        console.log(this.carList)
       })
     }
   },
@@ -64,6 +63,7 @@ export default defineComponent({
       :state="i.state"
       :like="i.like"
       :car-id="i.id"
+      :edit-vehicle="false"
     />
   </div>
 </template>
@@ -71,7 +71,7 @@ export default defineComponent({
 <style scoped>
 .car-list-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto;
   gap: 2rem;
 }

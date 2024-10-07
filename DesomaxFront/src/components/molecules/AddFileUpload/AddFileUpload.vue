@@ -13,6 +13,11 @@ export default defineComponent({
     title: {
       type: String,
       default: ''
+    },
+
+    image: {
+      type: String,
+      default: ''
     }
   },
 
@@ -24,7 +29,8 @@ export default defineComponent({
     return {
       selectedFile: null,
       selectedFileUrl: '',
-      iptImageRef: null
+      iptImageRef: null,
+      aux: false
     }
   },
 
@@ -53,7 +59,18 @@ export default defineComponent({
     }
   },
 
-  computed: {}
+  computed: {},
+
+  watch: {
+    image(newValue) {
+      console.log(newValue)
+      if (newValue != '') {
+        this.aux = true
+      } else {
+        this.aux = false
+      }
+    }
+  }
 })
 </script>
 
@@ -64,7 +81,7 @@ export default defineComponent({
       v-if="title"
       >{{ title }}</span
     >
-    <div class="container-upload" @click="clickUpload">
+    <div class="container-upload" @click="clickUpload" v-if="aux == false">
       <div v-if="selectedFile" class="box-buttons">
         <div class="icon-delete" @click.stop="handleDelete">
           <i class="pi pi-trash text-white"></i>
@@ -76,6 +93,15 @@ export default defineComponent({
           <span class="text-upload">Adicione uma imagem</span>
         </span>
       </div>
+    </div>
+
+    <div v-if="aux == true" class="container-upload-edit">
+      <div class="box-buttons">
+        <div class="icon-delete cursor-pointer" @click.stop="aux = false">
+          <i class="pi pi-trash text-white"></i>
+        </div>
+      </div>
+      <img class="box-center" :src="image" alt="" />
     </div>
     <input
       type="file"
@@ -103,6 +129,22 @@ export default defineComponent({
   -webkit-border-radius: 10px 10px 10px 10px;
   -moz-border-radius: 10px 10px 10px 10px;
 }
+
+.container-upload-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: '100%';
+  height: 15rem;
+  position: relative;
+  margin-bottom: 2rem;
+  border: 2px dashed #dfdfdf;
+  background: #ffffff;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+}
+
 .icon-upload {
   font-size: 3rem;
   color: #2d2c70;

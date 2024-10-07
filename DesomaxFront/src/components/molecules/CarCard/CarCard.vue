@@ -42,8 +42,8 @@ export default defineComponent({
     },
 
     price: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     },
 
     image: {
@@ -66,7 +66,7 @@ export default defineComponent({
       default: ''
     },
 
-    like: {
+    editVehicle: {
       type: Boolean,
       default: false
     },
@@ -112,7 +112,11 @@ export default defineComponent({
 
     redirect() {
       localStorage.setItem('CarId', this.carId)
-      this.$router.push('/vehicle-details')
+      if (this.editVehicle) {
+        this.$router.push('/edit-vehicle')
+      } else {
+        this.$router.push('/vehicle-details')
+      }
     }
   },
 

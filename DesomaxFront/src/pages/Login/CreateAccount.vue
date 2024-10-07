@@ -41,16 +41,34 @@ export default defineComponent({
   methods: {
     insertUser() {
       if (
-        this.payload.firstName != '' ||
-        this.payload.lastName != '' ||
-        this.payload.lastName != '' ||
-        this.payload.email != '' ||
-        this.payload.phone != '' ||
-        this.payload.userName != '' ||
-        this.payload.cpf != '' ||
-        this.payload.password != '' ||
+        this.payload.firstName != '' &&
+        this.payload.lastName != '' &&
+        this.payload.email != '' &&
+        this.payload.phone != '' &&
+        this.payload.userName != '' &&
+        this.payload.cpf != '' &&
+        this.payload.password != '' &&
         this.confirmPassword != ''
       ) {
+        const validPassword = this.isValidPassword(this.payload.password)
+
+        if (validPassword) {
+          axios
+            .post(`https://localhost:7148/api/User/InsertUser`, this.payload)
+            .then(() => {
+              toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
+              this.$router.push('/')
+            })
+            .catch(() => {
+              toast(
+                ETypeToast.Error,
+                'Ocorreu um erro.',
+                'Não foi possível adicionar o usuário, tente novamente.'
+              )
+            })
+        }
+      } else {
+        console.log(this.payload, this.confirmPassword)
         toast(
           ETypeToast.Error,
           'Ocorreu um erro.',
@@ -58,23 +76,6 @@ export default defineComponent({
         )
 
         return false
-      }
-      const validPassword = this.isValidPassword(this.payload.password)
-
-      if (validPassword) {
-        axios
-          .post(`https://localhost:7148/api/User/InsertUser`, this.payload)
-          .then(() => {
-            toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
-            this.$router.push('/')
-          })
-          .catch(() => {
-            toast(
-              ETypeToast.Error,
-              'Ocorreu um erro.',
-              'Não foi possível adicionar o usuário, tente novamente.'
-            )
-          })
       }
     },
 
@@ -232,18 +233,31 @@ export default defineComponent({
         ofertas exclusivas e serviços personalizados.
       </div>
 
-      <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-2">
-        <PrimaryButton
-          :just-slot="loading"
-          text="Salvar"
-          button-color="var(--primary-color)"
-          hover-color="#ff8819"
-          rounding="10px"
-          uppercase
-          @click="insertUser"
-        >
-          <Loading />
-        </PrimaryButton>
+      <div class="flex flex-row-reverse items-center gap-5">
+        <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-2">
+          <PrimaryButton
+            :just-slot="loading"
+            text="Salvar"
+            button-color="var(--primary-color)"
+            hover-color="#ff8819"
+            rounding="10px"
+            uppercase
+            @click="insertUser"
+          >
+            <Loading />
+          </PrimaryButton>
+        </div>
+
+        <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-2">
+          <PrimaryButton
+            text="Voltar"
+            button-color="var(--primary-color)"
+            hover-color="#ff8819"
+            rounding="10px"
+            uppercase
+            @click="$router.push('/')"
+          />
+        </div>
       </div>
     </div>
   </div>
