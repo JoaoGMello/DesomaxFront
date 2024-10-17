@@ -99,7 +99,12 @@ export default defineComponent({
 
 <template>
   <div class="size-full">
-    <CardTitle title="Edite o veículo" :shadow="false" turn-back>
+    <CardTitle
+      title="Edite o veículo"
+      :shadow="false"
+      turn-back
+      @click-turn-back="$router.push('/home')"
+    >
       <template #headerButtons>
         <div class="note1:h-[2.1rem] monitor1:h-[2.35rem] w-[10rem]">
           <PrimaryButton
