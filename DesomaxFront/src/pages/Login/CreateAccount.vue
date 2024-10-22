@@ -156,7 +156,7 @@ export default defineComponent({
         Cadastre-se
       </div>
 
-      <div class="grid items-start gap-x-8 note1:gap-y-5 monitor1:gap-y-10 py-6 w-[100%] form">
+      <div class="grid items-start gap-x-8 note1:gap-y-5 monitor1:gap-y-8 py-6 w-[100%] form">
         <FormInputText
           class="one-field"
           input-label="Nome"
@@ -221,6 +221,30 @@ export default defineComponent({
           placeholder="Digite sua senha"
           font-label="Poppins Medium"
           v-model="confirmPassword"
+        />
+
+        <FormInputText
+          class="one-field"
+          input-label="Estado"
+          placeholder="Digite a sigla do estado em que vive"
+          font-label="Poppins Medium"
+          v-model:model-value="payload.state"
+        />
+
+        <FormInputText
+          class="one-field"
+          input-label="Cidade"
+          placeholder="Digite a cidade onde mora"
+          font-label="Poppins Medium"
+          v-model:model-value="payload.city"
+        />
+
+        <FormInputText
+          class="one-field"
+          input-label="Endereço"
+          placeholder="Digite seu endereço"
+          font-label="Poppins Medium"
+          v-model:model-value="payload.address"
         />
       </div>
 

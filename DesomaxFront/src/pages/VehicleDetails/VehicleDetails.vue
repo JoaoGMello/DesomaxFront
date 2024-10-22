@@ -130,7 +130,11 @@ export default defineComponent({
 
             <div class="flex flex-col gap-3 px-5">
               <div class="flex items-center justify-between">
-                <div class="price">R$ {{ carDetails.price }}</div>
+                <div class="price">
+                  {{
+                    carDetails.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+                  }}
+                </div>
                 <div class="note1:h-[2.1rem] monitor1:h-[2.35rem] w-[11rem]">
                   <PrimaryButton
                     text="Enviar Mensagem"

@@ -138,7 +138,9 @@ export default defineComponent({
         {{ description }}
       </div>
 
-      <div class="price font-semibold flex items-center">R$ {{ price }}</div>
+      <div class="price font-semibold flex items-center">
+        {{ price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }}
+      </div>
 
       <div class="flex justify-between items-center">
         <div class="year font-semibold text-sm text-[#6f7d6c]">{{ year }}</div>
