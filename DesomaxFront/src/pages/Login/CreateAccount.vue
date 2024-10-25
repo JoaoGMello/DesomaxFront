@@ -275,8 +275,8 @@ export default defineComponent({
         <div class="note1:h-[35px] monitor1:h-[42px] w-[16rem] note1:my-2">
           <PrimaryButton
             text="Voltar"
-            button-color="var(--primary-color)"
-            hover-color="#ff8819"
+            button-color="var(--tertiary-color)"
+            hover-color="#bebebe"
             rounding="10px"
             uppercase
             @click="$router.push('/')"
@@ -288,9 +288,20 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.form {
-  display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(2, 1fr);
+
+@media (min-width: 1024px) {
+  .form {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1600px) {
+  .form {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>
