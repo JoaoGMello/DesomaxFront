@@ -14,5 +14,6 @@ export class CarDetails {
   public userId: string = ''
   public city: string = ''
   public state: string = ''
+  public seller: string = ''
   public like: boolean = false
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-import CarDetailsViewModel from '@/classes/CarDetailsViewModel'
+import CarDetailsViewModel, { CarDetails } from '@/classes/CarDetailsViewModel'
 import Card from '@/components/atoms/Card/Card.vue'
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import CardTitle from '@/components/molecules/CardTitle/CardTitle.vue'
@@ -27,7 +27,7 @@ export default defineComponent({
   data() {
     return {
       carId: '',
-      carDetails: new CarDetailsViewModel(),
+      carDetails: new CarDetails(),
       name: '',
       email: '',
       phone: '',
@@ -46,13 +46,13 @@ export default defineComponent({
       })
     },
 
-    send_handle() {
-      const win = window.open(
-        `https://wa.me/18996892047?text=I%27m%20api%20msg%20hello%20${this.name}%20friend%20${this.message}`,
-        '_blank'
-      )
-      win.focus()
-    }
+    // send_handle() {
+    //   const win = window.open(
+    //     `https://wa.me/18996892047?text=I%27m%20api%20msg%20hello%20${this.name}%20friend%20${this.message}`,
+    //     '_blank'
+    //   )
+    //   win.focus()
+    // }
   },
 
   computed: {}
@@ -145,7 +145,6 @@ export default defineComponent({
                     hover-color="#ff8819"
                     padding-resp="1rem 0"
                     padding="1.2rem 0"
-                    @click="send_handle"
                   />
                 </div>
               </div>
