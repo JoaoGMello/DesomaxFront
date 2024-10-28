@@ -144,7 +144,9 @@ export default defineComponent({
 
       <div class="flex justify-between items-center">
         <div class="year font-semibold text-sm text-[#6f7d6c]">{{ year }}</div>
-        <div class="mileage font-semibold text-sm text-[#6f7d6c]">{{ km }} Km</div>
+        <div class="mileage font-semibold text-sm text-[#6f7d6c]">
+          {{ km.toLocaleString('pt-BR') }} Km
+        </div>
       </div>
 
       <div class="note1:h-[35px]">

@@ -43,9 +43,4 @@ body,
   width: 100%;
   overflow: hidden;
 }
-
-.p-toast {
-  display: flex;
-  flex-direction: column;
-}
 </style>

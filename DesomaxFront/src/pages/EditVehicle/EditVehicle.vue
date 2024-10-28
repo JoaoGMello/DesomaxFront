@@ -64,32 +64,19 @@ export default defineComponent({
     },
 
     updateCar() {
-      if (
-        this.payload.brand != '' &&
-        this.payload.model != '' &&
-        this.aux != '' &&
-        this.payload.price != 0 &&
-        this.payload.km != '' &&
-        this.payload.color != '' &&
-        this.payload.year != '' &&
-        this.payload.description != ''
-      ) {
-        axios
-          .put(`https://localhost:7148/api/Car/UpdateCar`, this.payload)
-          .then(() => {
-            toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
-            this.$router.push('/home')
-          })
-          .catch(() => {
-            toast(
-              ETypeToast.Error,
-              'Ocorreu um erro.',
-              'Não foi adicionar o veículo, tente novamente.'
-            )
-          })
-      } else {
-        toast(ETypeToast.Error, 'Ocorreu um erro.', 'Preencha todas as informações para proseguir.')
-      }
+      axios
+        .put(`https://localhost:7148/api/Car/UpdateCar`, this.payload)
+        .then(() => {
+          toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
+          this.$router.push('/home')
+        })
+        .catch(() => {
+          toast(
+            ETypeToast.Error,
+            'Ocorreu um erro.',
+            'Não foi adicionar o veículo, tente novamente.'
+          )
+        })
     }
   },
 
@@ -163,7 +150,7 @@ export default defineComponent({
               v-model="payload.year"
             />
 
-            <FormInputText
+            <FormInputNumber
               class="km"
               input-label="Quilometragem"
               placeholder="Digite a quilometragem"

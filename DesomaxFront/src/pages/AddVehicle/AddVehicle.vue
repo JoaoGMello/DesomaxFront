@@ -146,7 +146,7 @@ export default defineComponent({
               v-model="payload.year"
             />
 
-            <FormInputText
+            <FormInputNumber
               class="km"
               input-label="Quilometragem"
               placeholder="Digite a quilometragem"

@@ -215,6 +215,7 @@ export default defineComponent({
 
 :deep(.p-inputtext) {
   color: v-bind('inputTextColor') !important;
+  width: 100%;
   background-color: v-bind('backgroundInput') !important;
   font-family: v-bind('inputFont');
   font-weight: v-bind('inputTextWeight') !important;

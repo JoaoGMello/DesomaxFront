@@ -44,7 +44,7 @@ export default defineComponent({
       axios.post(`https://localhost:7148/api/Car/GetCarById`, payload).then((response) => {
         this.carDetails = response.data[0]
       })
-    },
+    }
 
     // send_handle() {
     //   const win = window.open(
@@ -93,7 +93,7 @@ export default defineComponent({
 
               <div>
                 <div class="label">Km</div>
-                <div class="field">{{ carDetails.km }}</div>
+                <div class="field">{{ carDetails.km.toLocaleString('pt-BR') }}</div>
               </div>
 
               <div>
