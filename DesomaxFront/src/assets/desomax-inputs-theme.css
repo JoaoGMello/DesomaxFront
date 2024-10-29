@@ -6293,9 +6293,8 @@ body {
 .p-toast {
   opacity: 0.9;
 }
-:deep(.p-toast-message .p-toast-message-content .p-toast) {
+.p-toast-message-content {
   display: flex;
-  flex-direction: row !important;
 }
 .p-toast .p-toast-message {
   margin: 0 0 1rem 0;

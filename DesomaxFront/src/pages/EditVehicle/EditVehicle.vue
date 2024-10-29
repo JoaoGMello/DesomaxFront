@@ -67,14 +67,14 @@ export default defineComponent({
       axios
         .put(`https://localhost:7148/api/Car/UpdateCar`, this.payload)
         .then(() => {
-          toast(ETypeToast.Success, 'Sucesso!', 'Usuário adicionado com sucesso!')
+          toast(ETypeToast.Success, 'Sucesso!', 'Veículo atualizado com sucesso!')
           this.$router.push('/home')
         })
         .catch(() => {
           toast(
             ETypeToast.Error,
             'Ocorreu um erro.',
-            'Não foi adicionar o veículo, tente novamente.'
+            'Não foi possível atualizar o veículo, tente novamente.'
           )
         })
     }

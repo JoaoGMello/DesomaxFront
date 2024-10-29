@@ -45,14 +45,6 @@ export default defineComponent({
         this.carDetails = response.data[0]
       })
     }
-
-    // send_handle() {
-    //   const win = window.open(
-    //     `https://wa.me/18996892047?text=I%27m%20api%20msg%20hello%20${this.name}%20friend%20${this.message}`,
-    //     '_blank'
-    //   )
-    //   win.focus()
-    // }
   },
 
   computed: {}
@@ -136,54 +128,70 @@ export default defineComponent({
                   }}
                 </div>
                 <div class="note1:h-[2.1rem] monitor1:h-[2.35rem] w-[11rem]">
-                  <PrimaryButton
-                    text="Enviar Mensagem"
-                    weight-text="500"
-                    icon-height-resp="0.95rem"
-                    icon-height="1rem"
-                    button-color="var(--primary-color)"
-                    hover-color="#ff8819"
-                    padding-resp="1rem 0"
-                    padding="1.2rem 0"
-                  />
+                  <a
+                    :href="`mailto:${carDetails.emailSeller}?subject=Usuário interessado no veículo ${carDetails.brand} ${carDetails.model}&amp;body=Olá,%0D%0A%0D%0A ${message} %0D%0A%0D%0A
+                    Informações do Interessado:%0D%0A
+                    -Nome: ${name}%0D%0A
+                    -Telefone: ${phone}%0D%0A
+                    -Email: ${email}%0D%0A%0D%0A
+                    Por favor, entre em contato para que possamos discutir mais detalhes sobre o veículo.%0D%0A
+                    Aguardo seu retorno.%0D%0A
+                    Atenciosamente,%0D%0A
+                     ${name}`"
+                  >
+                    <PrimaryButton
+                      text="Enviar Mensagem"
+                      weight-text="500"
+                      icon-height-resp="0.95rem"
+                      icon-height="1rem"
+                      button-color="var(--primary-color)"
+                      hover-color="#ff8819"
+                      padding-resp="1rem 0"
+                      padding="1.2rem 0"
+                    />
+                  </a>
                 </div>
               </div>
 
               <div class="message">Envie uma mensagem para o vendedor</div>
 
-              <FormInputText
-                class="one-field"
-                input-label="Nome"
-                placeholder="Digite seu nome"
-                font-label="Poppins Medium"
-                v-model:model-value="name"
-              />
+              <div
+                class="flex flex-col gap-2 overflow-auto note1:h-[330px] note2:h-[340px] monitor1:h-[350px] monitor2:h-full"
+              >
+                <FormInputText
+                  class="one-field"
+                  input-label="Nome"
+                  placeholder="Digite seu nome"
+                  font-label="Poppins Medium"
+                  v-model:model-value="name"
+                />
 
-              <FormInputText
-                class="one-field"
-                input-label="E-mail"
-                placeholder="Digite seu e-mail"
-                font-label="Poppins Medium"
-                v-model:model-value="email"
-              />
+                <FormInputText
+                  class="one-field"
+                  input-label="E-mail"
+                  placeholder="Digite seu e-mail"
+                  font-label="Poppins Medium"
+                  v-model:model-value="email"
+                />
 
-              <FormInputMask
-                class="one-fields"
-                input-label="Telefone"
-                font-label="Poppins Medium"
-                mask="(99)99999-9999"
-                :auto-clear="false"
-                placeholder="Digite um número de telefone"
-                v-model:model-value="phone"
-              />
+                <FormInputMask
+                  class="one-fields"
+                  input-label="Telefone"
+                  font-label="Poppins Medium"
+                  mask="(99)99999-9999"
+                  :auto-clear="false"
+                  placeholder="Digite um número de telefone"
+                  v-model:model-value="phone"
+                />
 
-              <FormTextArea
-                class="description"
-                input-label="Descrição"
-                placeholder="Digite uma breve descrição"
-                font-label="Poppins Medium"
-                v-model="message"
-              />
+                <FormTextArea
+                  class="description"
+                  input-label="Descrição"
+                  placeholder="Digite uma breve descrição"
+                  font-label="Poppins Medium"
+                  v-model="message"
+                />
+              </div>
             </div>
           </div>
         </template>
