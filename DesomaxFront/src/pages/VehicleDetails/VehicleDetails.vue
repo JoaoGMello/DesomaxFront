@@ -156,12 +156,12 @@ export default defineComponent({
               <div class="message">Envie uma mensagem para o vendedor</div>
 
               <div
-                class="flex flex-col gap-2 overflow-auto note1:h-[330px] note2:h-[340px] monitor1:h-[350px] monitor2:h-full"
+                class="flex flex-col gap-2 overflow-auto note1:h-[210px] monitor2:h-full"
               >
                 <FormInputText
                   class="one-field"
-                  input-label="Nome"
-                  placeholder="Digite seu nome"
+                  input-label="Nome Completo"
+                  placeholder="Informe seu nome completo"
                   font-label="Poppins Medium"
                   v-model:model-value="name"
                 />
@@ -180,14 +180,14 @@ export default defineComponent({
                   font-label="Poppins Medium"
                   mask="(99)99999-9999"
                   :auto-clear="false"
-                  placeholder="Digite um número de telefone"
+                  placeholder="Digite seu número de telefone"
                   v-model:model-value="phone"
                 />
 
                 <FormTextArea
                   class="description"
-                  input-label="Descrição"
-                  placeholder="Digite uma breve descrição"
+                  input-label="Mande sua mensagem"
+                  placeholder="Informe o que mais te chamou atenção e o que gostaria de discutir com o vendedor"
                   font-label="Poppins Medium"
                   v-model="message"
                 />

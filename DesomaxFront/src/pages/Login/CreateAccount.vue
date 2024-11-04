@@ -225,7 +225,7 @@ export default defineComponent({
 
         <FormInputText
           class="one-field"
-          input-label="Estado"
+          input-label="Estado (Sigla)"
           placeholder="Digite a sigla do estado em que vive"
           font-label="Poppins Medium"
           v-model:model-value="payload.state"
