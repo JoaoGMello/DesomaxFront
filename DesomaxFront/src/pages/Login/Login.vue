@@ -74,13 +74,11 @@ export default defineComponent({
 
 <template>
   <div class="login-container flex h-full">
-    <a
-      href="https://storyset.com/transport"
-      target="_blank"
+    <div
       class="image-content h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center bg-orange-200"
     >
       <Image imgWidth="80%" imgHeight="80%" imgHeightResp="80%" imageName="car_login_image.svg" />
-    </a>
+    </div>
 
     <div class="h-full w-[50%] pt-8 px-8 flex flex-col justify-center items-center">
       <div
