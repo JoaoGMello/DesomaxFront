@@ -5,6 +5,8 @@ import Loading from '@/components/atoms/Loading/Loading.vue'
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton.vue'
 import FormInputMask from '@/components/molecules/Inputs/FormInputMask/FormInputMask.vue'
 import FormInputText from '@/components/molecules/Inputs/FormInputText/FormInputText.vue'
+import FormRadioButton from '@/components/molecules/Inputs/FormRadioButton/FormRadioButton.vue'
+import LabelValue from '@/shared/LabelValue'
 import ETypeToast, { toast } from '@/tools/toast'
 import axios from 'axios'
 import { defineComponent } from 'vue'
@@ -19,7 +21,8 @@ export default defineComponent({
     FormInputText,
     FormInputMask,
     PrimaryButton,
-    Loading
+    Loading,
+    FormRadioButton
   },
 
   // props: { },
@@ -34,7 +37,8 @@ export default defineComponent({
       regex: /[^0-9]+/g,
       loading: false,
       payload: new InsertUser(),
-      confirmPassword: ''
+      confirmPassword: '',
+      optionsStatus: [new LabelValue('Masculino', 0), new LabelValue('Feminino', 1)]
     }
   },
 
@@ -243,6 +247,17 @@ export default defineComponent({
           placeholder="Digite seu endereço"
           font-label="Poppins Medium"
           v-model:model-value="payload.address"
+        />
+
+        <FormRadioButton
+          class="one-field"
+          input-label="Gênero"
+          fontLabel="Poppins Medium"
+          fontLabelRadio="Poppins Regular"
+          :options="optionsStatus"
+          option-label="label"
+          option-value="value"
+          v-model:model-value="payload.gender"
         />
       </div>
 

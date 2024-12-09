@@ -9,4 +9,5 @@ export default class InsertUser {
   public state: string = ''
   public city: string = ''
   public address: string = ''
+  public gender: number = 0
 }
